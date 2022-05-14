@@ -19,7 +19,6 @@ public class MyBatisConfig {
         sqlSessionFactory.setMapperLocations(
                 new PathMatchingResourcePatternResolver()
                         .getResources("classpath:mappers/*.xml"));
-        sqlSessionFactory.setTypeAliasesPackage("kr.co.ffm.system");
 
         return (SqlSessionFactory) sqlSessionFactory.getObject();
     }

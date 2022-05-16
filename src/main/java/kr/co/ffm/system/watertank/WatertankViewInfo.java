@@ -1,5 +1,12 @@
 package kr.co.ffm.system.watertank;
 
-public class WatertankViewInfo {
+import lombok.Data;
 
+@Data
+public class WatertankViewInfo {
+    private String id;
+    private int farmedFishNo;
+    private String agentIpAddress;
+    private String registDate;
+    private String active;
 }

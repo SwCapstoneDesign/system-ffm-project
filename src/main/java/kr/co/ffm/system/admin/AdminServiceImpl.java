@@ -8,4 +8,8 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
+    @Override
+    public boolean login(Admin admin) {
+        return false;
+    }
 }

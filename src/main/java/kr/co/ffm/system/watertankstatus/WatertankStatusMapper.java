@@ -10,5 +10,6 @@ import java.util.List;
 public interface WatertankStatusMapper {
     public void insert(WatertankStatus watertankStatus);
     public List<WatertankStatus> selectAllByRownum(Page page);
+    public List<WatertankStatus> selectAllByWatertankId(Watertank watertank);
     public WatertankStatus selectByWatertankId(Watertank watertank);
 }

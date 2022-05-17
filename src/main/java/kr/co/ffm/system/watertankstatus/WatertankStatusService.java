@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface WatertankStatusService {
-    public List<WatertankStatus> viewWatertankStatusList(Watertank watertank);
+    public WatertankStatus viewWatertankStatusList(Watertank watertank);
     public void receiveWatertankStatus(WatertankStatus watertankStatus);
 }
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.ffm.system.watertank.WatertankMapper">
+    <select id="selectAll"
+            parameterType="Watertank"
+            resultType="Watertank">
+        SELECT ID
+             , FARMED_FISH_NO
+             , AGENT_IP_ADDRESS
+             , REGIST_DATE
+             , ACTIVE
+        FROM WATER_TANK
+    </select>
+
+    <select id="selectById"
+            parameterType="Watertank"
+            resultType="Watertank">
+        SELECT ID
+             , FARMED_FISH_NO
+             , AGENT_IP_ADDRESS
+             , REGIST_DATE
+             , ACTIVE
+        FROM WATER_TANK
+        WHERE ID = #{id}
+    </select>
+
+    <insert id="insert"
+            parameterType="Watertank">
+        INSERT INTO WATER_TANK
+        VALUES (#{id}, #{farmedFishNo}, #{agentIpAddress}, NOW(), 'Y')
+    </insert>
+
+    <update id="updateById"
+            parameterType="Watertank">
+        UPDATE WATER_TANK
+        <set>
+            <if test="active != null and active !=''">
+                ACTIVE = #{active}
+            </if>
+        </set>
+        WHERE ID = #{id};
+    </update>
+</mapper>

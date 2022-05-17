@@ -1,5 +1,6 @@
 package kr.co.ffm.system.watertank;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
@@ -9,10 +10,4 @@ public class Watertank {
     private String agentIpAddress;
     private String registDate;
     private String active;
-    private int no;
-    private String watertankId;
-    private int temperature;
-    private int ph;
-    private int oxygen;
-    private String measureTime;
 }

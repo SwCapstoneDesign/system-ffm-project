@@ -16,21 +16,34 @@ public class AdminController {
 
     @GetMapping("/login")
     public ModelAndView login() {
-//        view : loginForm
-        return null;
+        return new ModelAndView("admin/loginForm");
     }
 
     @PostMapping("/login")
     public ModelAndView loginForm(Admin admin,
                                   Errors errors,
                                   HttpSession httpSession) {
-//        redirect : /Watertank/main
-        return null;
+        new AdminValidator().validate(admin, errors);
+        ModelAndView mav = new ModelAndView();
+
+        if (errors.hasErrors()) {
+            mav.addObject("errorMsg", "입력된 값이 없습니다.");
+            mav.setViewName("redirect:/login");
+        }
+
+        if (adminService.login(admin)) {
+            httpSession.setAttribute("id", admin.getId());
+            mav.setViewName("redirect:/Watertank/main");
+        } else {
+            mav.setViewName("redirect:/login");
+        }
+
+        return mav;
     }
 
     @GetMapping("/logout")
     public ModelAndView logout(HttpSession httpSession) {
-//        redirect : /login
-        return null;
+        httpSession.invalidate();
+        return new ModelAndView("redirect:/login");
     }
 }

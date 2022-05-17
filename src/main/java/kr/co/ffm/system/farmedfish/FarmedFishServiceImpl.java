@@ -9,7 +9,6 @@ public class FarmedFishServiceImpl implements FarmedFishService {
 
     @Override
     public void registFarmedFish(FarmedFish farmedFish) {
-
     }
 
     @Override
@@ -24,6 +23,5 @@ public class FarmedFishServiceImpl implements FarmedFishService {
 
     @Override
     public void editFarmedFish(FarmedFish farmedFish) {
-
     }
 }

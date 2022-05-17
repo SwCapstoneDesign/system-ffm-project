@@ -10,6 +10,6 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean login(Admin admin) {
-        return false;
+        return admin.equals(adminMapper.select(admin));
     }
 }

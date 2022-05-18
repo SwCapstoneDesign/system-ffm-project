@@ -29,15 +29,15 @@
 
     function drawTable() {
         $.ajax({
-            type: 'GET',
-            url: '/watertank',
-            dataType: 'json',
-            date: {
-                'farmedFishName' : $("#keywordName").val(),
-                'url' : url
+            url:'/watertank',
+            data:{
+                'farmedFishName' : $("#keywordName").val()
             },
-            headers: {"Content-type": "application/json;charset=UTF-8"},
-            success: function (result) {
+            type:'GET',
+            dataType:'json',
+            headers: { "Content-Type" : "application/json;charset=UTF-8" },
+            success:function (result) {
+                console.log(this.data)
                 var script = "";
                 script += '<table id="table" border="1">';
                 script += '<thead>';
@@ -54,7 +54,7 @@
                 for (var i = 0; i < result.length; i++) {
                     script += '<tr>'
                     script += '    <td>' + result[i].id + '</td>';
-                    script += '    <td>' + result[i].farmedFishName + '</td>';
+                    script += '    <td><a href="${pageContext.servletContext.contextPath}/watertank/' + result[i].id + '">' + result[i].farmedFishName + '</a></td>';
                     script += '    <td>' + result[i].statusList[0].temperature + '</td>';
                     script += '    <td>' + result[i].statusList[0].ph + '</td>';
                     script += '    <td>' + result[i].statusList[0].oxygen + '</td>';

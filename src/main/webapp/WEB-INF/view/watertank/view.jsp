@@ -11,6 +11,17 @@
     <title>Title</title>
 </head>
 <body>
-
+    <div>
+        <h2>수조 ID</h2>
+        ${result.id}
+        <h2>양식어 명</h2>
+        ${result.farmedFishName}
+        <h2>에이전트 IP 주소</h2>
+        ${result.agentIpAddress}
+        <h2>등록일자</h2>
+        ${result.registDate}
+        <h2>활성</h2>
+        ${result.active}
+    </div>
 </body>
 </html>

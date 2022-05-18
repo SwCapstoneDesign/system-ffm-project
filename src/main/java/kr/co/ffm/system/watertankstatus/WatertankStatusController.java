@@ -19,7 +19,7 @@ public class WatertankStatusController {
     }
 
     public String receiveWatertankStatus(WatertankStatus watertankStatus) {
-
+        watertankStatusService.receiveWatertankStatus(watertankStatus);
         return null;
     }
 }

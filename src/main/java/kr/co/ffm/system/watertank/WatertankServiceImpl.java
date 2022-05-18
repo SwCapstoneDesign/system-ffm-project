@@ -16,8 +16,6 @@ public class WatertankServiceImpl implements WatertankService {
     private WatertankMapper watertankMapper;
     @Autowired
     private WatertankStatusMapper watertankStatusMapper;
-    @Autowired
-    private FarmedFishMapper farmedFishMapper;
 
     @Override
     public List<WatertankViewInfo> viewWatertankList(Watertank watertank) {
@@ -28,14 +26,13 @@ public class WatertankServiceImpl implements WatertankService {
             WatertankViewInfo watertankViewInfo = new WatertankViewInfo();
             watertankViewInfo.setId(watertankList.get(i).getId());
             watertankViewInfo.setFarmedFishNo(watertankList.get(i).getFarmedFishNo());
+            watertankViewInfo.setFarmedFishName(watertankList.get(i).getFarmedFishName());
             watertankViewInfo.setAgentIpAddress(watertankList.get(i).getAgentIpAddress());
             watertankViewInfo.setRegistDate(watertankList.get(i).getRegistDate());
             watertankViewInfo.setActive(watertankList.get(i).getActive());
 
-            List<WatertankStatus> statusList = watertankStatusMapper.selectAllByWatertankId(watertank);
+            List<WatertankStatus> statusList = watertankStatusMapper.selectAllByWatertankId(watertankViewInfo);
             watertankViewInfo.setStatusList(statusList);
-
-            //양식어 매퍼 작성되면 양식어 객체도 반복하면서 watertankViewInfo에 넣어주기
 
             infoList.add(watertankViewInfo);
         }

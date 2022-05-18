@@ -22,7 +22,7 @@ public class MyBatisConfig {
         sqlSessionFactory.setTypeAliasesPackage("kr.co.ffm.system");
         sqlSessionFactory.setConfigLocation(
                 new PathMatchingResourcePatternResolver()
-                        .getResource("classpath:mybatis-config.xml"));
+                        .getResource("classpath:config/mybatis-config.xml"));
 
         return (SqlSessionFactory) sqlSessionFactory.getObject();
     }

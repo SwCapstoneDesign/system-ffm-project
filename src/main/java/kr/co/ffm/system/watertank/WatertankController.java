@@ -1,5 +1,7 @@
 package kr.co.ffm.system.watertank;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
@@ -15,6 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/watertank")
 public class WatertankController {
+    private static Logger logger
+            = LogManager.getLogger(WatertankController.class);
+
     @Autowired
     private WatertankService watertankService;
 
@@ -50,8 +55,8 @@ public class WatertankController {
     public String receiveWatertank(Watertank watertank) {
         watertankService.receiveWatertank(watertank);
         return "{" +
-                "code : 200" +
-                "message : null" +
+                "\"code\" : 200" +
+                ",\"message\" : null" +
                 "}";
     }
 }

@@ -6,8 +6,8 @@ import lombok.Data;
 public class WatertankStatus {
     private int no;
     private String watertankId;
-    private int temperature;
-    private int ph;
-    private int oxygen;
+    private double temperature;
+    private double ph;
+    private double oxygen;
     private String measureTime;
 }

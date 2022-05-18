@@ -10,7 +10,7 @@ import java.util.List;
 public class WatertankViewInfo {
     private String id;
     private int farmedFishNo;
-    private FarmedFish farmedFish;
+    private String farmedFishName;
     private String agentIpAddress;
     private String registDate;
     private String active;

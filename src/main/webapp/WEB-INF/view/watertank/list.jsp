@@ -11,6 +11,60 @@
     <title></title>
 </head>
 <body>
-    test
+    <input type="text" id="keywordName">
+    <button id="search">검색</button>
+    <div id="table"></div>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    var url = '/watertank';
+
+    $(document).ready(function (){
+        drawTable();
+        $("#search").click(function (){
+            $("#table").html("");
+            drawTable();
+        });
+    });
+
+    function drawTable() {
+        $.ajax({
+            type: 'GET',
+            url: '/watertank',
+            dataType: 'json',
+            date: {
+                'farmedFishName' : $("#keywordName").val(),
+                'url' : url
+            },
+            headers: {"Content-type": "application/json;charset=UTF-8"},
+            success: function (result) {
+                var script = "";
+                script += '<table id="table" border="1">';
+                script += '<thead>';
+                script += '<tr>';
+                script += '    <th>수조 아이디</th>';
+                script += '    <th>양식어 명</th>';
+                script += '    <th>수온</th>';
+                script += '    <th>산도</th>';
+                script += '    <th>용존산소량</th>';
+                script += '</tr>';
+                script += '</thead>';
+                script += '<tbody>';
+
+                for (var i = 0; i < result.length; i++) {
+                    script += '<tr>'
+                    script += '    <td>' + result[i].id + '</td>';
+                    script += '    <td>' + result[i].farmedFishName + '</td>';
+                    script += '    <td>' + result[i].statusList[0].temperature + '</td>';
+                    script += '    <td>' + result[i].statusList[0].ph + '</td>';
+                    script += '    <td>' + result[i].statusList[0].oxygen + '</td>';
+                    script += '</tr>';
+                }
+                script += '</tbody>';
+                script += '</table>';
+                $("#table").html(script);
+            }
+        });
+    }
+</script>
 </html>

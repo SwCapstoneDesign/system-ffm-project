@@ -11,7 +11,7 @@
     </select>
 
     <select id="selectAllByWatertankId"
-            parameterType="Watertank"
+            parameterType="WatertankViewInfo"
             resultType="WatertankStatus">
         SELECT NO
              , WATER_TANK_ID
@@ -20,7 +20,7 @@
              , OXYGEN
              , MEASURE_TIME
         FROM WATER_TANK_STATUS
-        WHERE WATER_TANK_ID = #{watertankId}
+        WHERE WATER_TANK_ID = #{id}
     </select>
 
     <insert id="insert" useGeneratedKeys="true" parameterType="WatertankStatus"

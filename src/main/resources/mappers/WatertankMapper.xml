@@ -9,10 +9,16 @@
             resultType="Watertank">
         SELECT ID
              , FARMED_FISH_NO
+             , FARMED_FISH_NAME
              , AGENT_IP_ADDRESS
              , REGIST_DATE
              , ACTIVE
         FROM WATER_TANK
+        <where>
+            <if test="farmedFishName != null and farmedFishName !=''">
+                AND FARMED_FISH_NAME = #{farmedFishName}
+            </if>
+        </where>
     </select>
 
     <select id="selectById"

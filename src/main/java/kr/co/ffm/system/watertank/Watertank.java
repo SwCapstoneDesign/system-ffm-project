@@ -7,6 +7,7 @@ import lombok.Data;
 public class Watertank {
     private String id;
     private int farmedFishNo;
+    private String farmedFishName;
     private String agentIpAddress;
     private String registDate;
     private String active;

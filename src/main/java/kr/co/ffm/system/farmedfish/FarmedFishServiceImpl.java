@@ -1,5 +1,6 @@
 package kr.co.ffm.system.farmedfish;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -7,8 +8,12 @@ import java.util.List;
 @Service
 public class FarmedFishServiceImpl implements FarmedFishService {
 
+    @Autowired
+    private FarmedFishMapper farmedFishMapper;
+
     @Override
     public void registFarmedFish(FarmedFish farmedFish) {
+        farmedFishMapper.insert(farmedFish);
     }
 
     @Override

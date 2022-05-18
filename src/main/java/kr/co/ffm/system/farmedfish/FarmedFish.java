@@ -7,9 +7,9 @@ public class FarmedFish {
     private int no;
     private String name;
     private int temperature;
-    private int PH;
+    private int ph;
     private int oxygen;
     private String feedingTime;
     private int feedingAmount;
-    private char active;
+    private String active;
 }

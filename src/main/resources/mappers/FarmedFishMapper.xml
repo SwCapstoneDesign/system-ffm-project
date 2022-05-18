@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.ffm.system.farmedfish.FarmedFishMapper">
+    <insert id="insert"
+            parameterType="FarmedFish">
+        INSERT INTO FARMED_FISH
+            (`NAME`
+            , `TEMPERATURE`
+            , `PH`
+            , `OXYGEN`
+            , `FEEDING_TIME`
+            , `FEEDING_AMOUNT`)
+        VALUES (#{name}
+                , #{temperature}
+                , #{ph}
+                , #{oxygen}
+                , #{feedingTime}
+                , #{feedingAmount});
+    </insert>
+
+    <select id="selectAll">
+
+    </select>
+
+    <select id="selectByNo"
+            parameterType="FarmedFish"
+            resultType="FarmedFish">
+
+    </select>
+
+    <update id="updateByNo"
+            parameterType="FarmedFish">
+
+    </update>
+</mapper>

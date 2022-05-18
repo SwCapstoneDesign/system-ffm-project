@@ -1,10 +1,10 @@
 package kr.co.ffm.system.farmedfish;
 
 import kr.co.ffm.system.page.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -12,15 +12,38 @@ import java.util.List;
 @RestController
 @RequestMapping("/farmedfish")
 public class FarmedFishController {
+
+    @Autowired
+    private FarmedFishService farmedFishService;
+
     @PostMapping
     public ModelAndView registFarmedFish(FarmedFish farmedFish) {
-//        redirect : /farmedfish
-        return null;
+        ModelAndView mav = new ModelAndView("redirect:/farmedfish");
+        farmedFishService.registFarmedFish(farmedFish);
+
+        return mav;
     }
 
     @GetMapping
+    public ModelAndView viewFarmedFishList() {
+        return new ModelAndView("farmedfish/list");
+    }
+
+    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<FarmedFish> viewFarmedFishList(FarmedFish farmedFish,
                                                Page page) {
+        return null;
+    }
+
+    @GetMapping("/{no}")
+    public ModelAndView viewFarmedFish(FarmedFish farmedFish) {
+//        view : /WEB-INF/jsp/farmedfish/view.jsp
+        return null;
+    }
+
+    @PutMapping
+    public ModelAndView editFarmedFish(FarmedFish farmedFish) {
+//        redirect : /farmedfish/{no}
         return null;
     }
 }

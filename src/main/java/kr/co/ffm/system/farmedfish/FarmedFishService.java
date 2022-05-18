@@ -10,5 +10,4 @@ public interface FarmedFishService {
     public List<FarmedFish> viewFarmedFishList(FarmedFish farmedFish);
     public FarmedFish viewFarmedFish(FarmedFish farmedFish);
     public void editFarmedFish(FarmedFish farmedFish);
-
 }

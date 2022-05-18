@@ -1,5 +1,6 @@
 package kr.co.ffm.system.watertank;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class WatertankController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<WatertankViewInfo> watertankList(@RequestBody Watertank watertank) {
+    public List<WatertankViewInfo> watertankList(Watertank watertank) {
         List<WatertankViewInfo> infoList = watertankService.viewWatertankList(watertank);
         return infoList;
     }
@@ -36,7 +37,7 @@ public class WatertankController {
         Watertank result = watertankService.viewWatertank(watertank);
 
         ModelAndView mov = new ModelAndView("watertank/view");
-        mov.addObject("result", "result");
+        mov.addObject("result", result);
 
         return mov;
     }

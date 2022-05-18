@@ -26,6 +26,7 @@
             resultType="Watertank">
         SELECT ID
              , FARMED_FISH_NO
+             , FARMED_FISH_NAME
              , AGENT_IP_ADDRESS
              , REGIST_DATE
              , ACTIVE
@@ -33,8 +34,8 @@
         WHERE ID = #{id}
     </select>
 
-    <insert id="insert"
-            parameterType="Watertank">
+    <insert id="insert" useGeneratedKeys="true" parameterType="Watertank"
+            keyColumn="NO" keyProperty="no">
         INSERT INTO WATER_TANK
         VALUES (#{id}, #{farmedFishNo}, #{agentIpAddress}, NOW(), 'Y')
     </insert>

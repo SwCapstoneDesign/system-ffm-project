@@ -18,15 +18,16 @@ public class FarmedFishServiceImpl implements FarmedFishService {
 
     @Override
     public List<FarmedFish> viewFarmedFishList(FarmedFish farmedFish) {
-        return null;
+        return farmedFishMapper.selectAll(farmedFish);
     }
 
     @Override
     public FarmedFish viewFarmedFish(FarmedFish farmedFish) {
-        return null;
+        return farmedFishMapper.selectByNo(farmedFish);
     }
 
     @Override
     public void editFarmedFish(FarmedFish farmedFish) {
+        farmedFishMapper.updateByNo(farmedFish);
     }
 }

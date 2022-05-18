@@ -30,20 +30,27 @@ public class FarmedFishController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<FarmedFish> viewFarmedFishList(FarmedFish farmedFish,
+    public List<FarmedFish> viewFarmedFishList(@RequestBody FarmedFish farmedFish,
                                                Page page) {
-        return null;
+        List<FarmedFish> farmedFishList =
+                farmedFishService.viewFarmedFishList(farmedFish);
+
+        return farmedFishList;
     }
 
     @GetMapping("/{no}")
     public ModelAndView viewFarmedFish(FarmedFish farmedFish) {
-//        view : /WEB-INF/jsp/farmedfish/view.jsp
-        return null;
+        ModelAndView mav = new ModelAndView("farmedfish/view");
+        mav.addObject("farmedFish", farmedFishService.viewFarmedFish(farmedFish));
+
+        return mav;
     }
 
     @PutMapping
     public ModelAndView editFarmedFish(FarmedFish farmedFish) {
-//        redirect : /farmedfish/{no}
-        return null;
+        ModelAndView mav = new ModelAndView("redirect:/farmedfish/" + farmedFish.getNo());
+        farmedFishService.editFarmedFish(farmedFish);
+
+        return mav;
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 @Mapper
 public interface FarmedFishMapper {
     public void insert(FarmedFish farmedFish);
-    public List<FarmedFish> selectAll();
+    public List<FarmedFish> selectAll(FarmedFish farmedFish);
     public FarmedFish selectByNo(FarmedFish farmedFish);
     public void updateByNo(FarmedFish farmedFish);
 }

@@ -21,18 +21,33 @@
                 , #{feedingAmount});
     </insert>
 
-    <select id="selectAll">
-
+    <select id="selectAll"
+            parameterType="FarmedFish"
+            resultType="FarmedFish">
+        SELECT NAME
+             , TEMPERATURE
+             , PH
+             , OXYGEN
+        FROM FARMED_FISH
+        <where>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
+        </where>
     </select>
 
     <select id="selectByNo"
             parameterType="FarmedFish"
             resultType="FarmedFish">
-
+        SELECT *
+        FROM FARMED_FISH
+        WHERE NO = #{no}
     </select>
 
     <update id="updateByNo"
             parameterType="FarmedFish">
-
+        UPDATE TABLE FARMED_FISH
+        SET ACTIVE = 'N'
+        WHERE NO = #{no}
     </update>
 </mapper>

@@ -5,10 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -29,7 +26,7 @@ public class WatertankController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<WatertankViewInfo> watertankList(Watertank watertank) {
+    public List<WatertankViewInfo> watertankList(@RequestBody Watertank watertank) {
         List<WatertankViewInfo> infoList = watertankService.viewWatertankList(watertank);
         return infoList;
     }

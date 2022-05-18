@@ -14,6 +14,7 @@ public class FeedingServiceImpl implements FeedingService {
 
     @Override
     public List<Feeding> viewFeedingList(Watertank watertank) {
+        feedingMapper.selectAll(watertank.getRegistDate());
         return null;
     }
 

@@ -7,5 +7,5 @@ import java.util.List;
 @Mapper
 public interface FeedingMapper {
     public void insert(Feeding feeding);
-    public List<Feeding> selectAll(Feeding feeding);
+    public List<Feeding> selectAll(String date);
 }

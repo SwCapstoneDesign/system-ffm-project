@@ -9,4 +9,3 @@ public class Feeding {
     private int feedingAmount;
     private String feedingTime;
 }
-

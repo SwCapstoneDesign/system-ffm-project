@@ -4,13 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.ffm.system.feeding.FeedingMapper">
-    <insert id="insert" parameterType="Feeding">
-
+    <insert id="insert"
+            parameterType="Feeding">
+        INSERT INTO FEEDING
+            (`WATER_TANK_ID`
+            , `FEEDING_AMOUNT`
+            , `FEEDING_TIME`)
+        VALUES (#{waterTankId}
+                , #{feedingAmount}
+                , #{feedingTime});
     </insert>
 
     <select id="selectAll"
-            parameterType="Feeding"
+            parameterType="String"
             resultType="Feeding">
-
+        SELECT *
+        FROM FEEDING
+        WHERE FEEDING_TIME LIKE '%${value}%'
     </select>
 </mapper>

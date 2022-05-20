@@ -24,7 +24,8 @@
     <select id="selectAll"
             parameterType="FarmedFish"
             resultType="FarmedFish">
-        SELECT NAME
+        SELECT NO
+            , NAME
              , TEMPERATURE
              , PH
              , OXYGEN

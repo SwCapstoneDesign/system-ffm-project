@@ -3,7 +3,6 @@ package kr.co.ffm.system.farmedfish;
 import kr.co.ffm.system.page.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,7 +29,7 @@ public class FarmedFishController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<FarmedFish> viewFarmedFishList(@RequestBody FarmedFish farmedFish,
+    public List<FarmedFish> viewFarmedFishList(FarmedFish farmedFish,
                                                Page page) {
         List<FarmedFish> farmedFishList =
                 farmedFishService.viewFarmedFishList(farmedFish);

@@ -12,14 +12,15 @@
             , `FEEDING_TIME`)
         VALUES (#{waterTankId}
                 , #{feedingAmount}
-                , #{feedingTime});
+                , now())
     </insert>
 
     <select id="selectAll"
-            parameterType="String"
+            parameterType="WaterTank"
             resultType="Feeding">
         SELECT *
         FROM FEEDING
-        WHERE FEEDING_TIME LIKE '%${value}%'
+        WHERE FEEDING_TIME LIKE '%${registDate}%'
+          AND WATER_TANK_ID = #{id}
     </select>
 </mapper>

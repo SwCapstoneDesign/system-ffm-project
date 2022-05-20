@@ -19,15 +19,17 @@ public class WatertankStatusServiceImpl implements WatertankStatusService {
     private FarmedFishMapper farmedFishMapper;
 
     @Override
-    public WatertankStatus viewWatertankStatusList(Watertank watertank) {
-        return watertankStatusMapper.selectByWatertankId(watertank);
+    public List<WatertankStatus> viewWatertankStatusList(WatertankStatus watertankStatus) {
+        return watertankStatusMapper.selectAllByWatertankId(watertankStatus);
     }
 
     @Override
     public void receiveWatertankStatus(WatertankStatus watertankStatus) {
         Watertank watertank = new Watertank();
         watertank.setId(watertankStatus.getWatertankId());
-        if (watertankMapper.selectById(watertank) != null) {
+
+        Watertank selectedWartertank = watertankMapper.selectById(watertank);
+        if (selectedWartertank.getId().equals(watertankStatus.getWatertankId())) {
             watertankStatusMapper.insert(watertankStatus);
 
             FarmedFish farmedFish = new FarmedFish();

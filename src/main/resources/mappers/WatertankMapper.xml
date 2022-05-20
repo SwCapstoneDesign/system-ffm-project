@@ -31,7 +31,11 @@
              , REGIST_DATE
              , ACTIVE
         FROM WATER_TANK
-        WHERE ID = #{id}
+        <where>
+            <if test="id != null and id != ''">
+                AND ID = #{id}
+            </if>
+        </where>
     </select>
 
     <insert id="insert" useGeneratedKeys="true" parameterType="Watertank"

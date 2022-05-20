@@ -1,5 +1,7 @@
 package kr.co.ffm.system.watertankstatus;
 
+import kr.co.ffm.system.control.Control;
+import kr.co.ffm.system.control.ControlService;
 import kr.co.ffm.system.farmedfish.FarmedFish;
 import kr.co.ffm.system.farmedfish.FarmedFishMapper;
 import kr.co.ffm.system.watertank.Watertank;
@@ -17,6 +19,8 @@ public class WatertankStatusServiceImpl implements WatertankStatusService {
     private WatertankMapper watertankMapper;
     @Autowired
     private FarmedFishMapper farmedFishMapper;
+    @Autowired
+    private ControlService controlService;
 
     @Override
     public List<WatertankStatus> viewWatertankStatusList(WatertankStatus watertankStatus) {
@@ -37,7 +41,31 @@ public class WatertankStatusServiceImpl implements WatertankStatusService {
             farmedFish = farmedFishMapper.selectByNo(farmedFish);
 
             if (farmedFish.getTemperature() != watertankStatus.getTemperature()) {
-                //난세랑 회의
+                Control control = new Control();
+                if(watertankStatus.getTemperature() < farmedFish.getTemperature()) {
+                    control.setControl("H");
+                } else {
+                    control.setControl("P");
+                }
+                control.setTarget("T");
+                control.setValue(farmedFish.getTemperature());
+                controlService.sendControl(watertank, control);
+            }
+
+            if (farmedFish.getPh() != watertankStatus.getPh()) {
+                Control control = new Control();
+                control.setControl("P");
+                control.setTarget("P");
+                control.setValue(farmedFish.getPh());
+                controlService.sendControl(watertank, control);
+            }
+
+            if (farmedFish.getOxygen() != watertankStatus.getOxygen()) {
+                Control control = new Control();
+                control.setControl("P");
+                control.setTarget("O");
+                control.setValue(farmedFish.getOxygen());
+                controlService.sendControl(watertank, control);
             }
         }
     }

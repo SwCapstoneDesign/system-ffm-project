@@ -27,6 +27,12 @@
     <input type="date" id="keywordName">
     <button id="search">검색</button>
     <div id="table"></div>
+
+    <a href="/watertank">
+        <button type="button" >
+            목록
+        </button>
+    </a>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">

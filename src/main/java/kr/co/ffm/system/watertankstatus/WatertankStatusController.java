@@ -18,7 +18,6 @@ public class WatertankStatusController {
 
     @GetMapping(consumes =  MediaType.APPLICATION_JSON_VALUE)
     public List<WatertankStatus> watertankStatusList(WatertankStatus watertankStatus) {
-        System.out.println("watertankStatus = " + watertankStatus);
         List<WatertankStatus> statusList = watertankStatusService.viewWatertankStatusList(watertankStatus);
 
         return statusList;
@@ -27,6 +26,17 @@ public class WatertankStatusController {
     @PostMapping
     public String receiveWatertankStatus(WatertankStatus watertankStatus) {
         watertankStatusService.receiveWatertankStatus(watertankStatus);
-        return null;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("{");
+        stringBuilder.append("\"code\" : ");
+        stringBuilder.append("\"200\"");
+        stringBuilder.append(", \"message\" : ");
+        stringBuilder.append("null");
+        stringBuilder.append("}");
+
+        String response = stringBuilder.toString();
+
+        return response;
     }
 }

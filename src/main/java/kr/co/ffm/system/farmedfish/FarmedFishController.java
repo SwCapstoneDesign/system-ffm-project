@@ -15,10 +15,11 @@ public class FarmedFishController {
     @Autowired
     private FarmedFishService farmedFishService;
 
-    @PostMapping
-    public ModelAndView registFarmedFish(FarmedFish farmedFish) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ModelAndView registFarmedFish(@RequestBody FarmedFish farmedFish) {
+        System.out.println("farmedFish = " + farmedFish);
         ModelAndView mav = new ModelAndView("redirect:/farmedfish");
-        farmedFishService.registFarmedFish(farmedFish);
+//        farmedFishService.registFarmedFish(farmedFish);
 
         return mav;
     }

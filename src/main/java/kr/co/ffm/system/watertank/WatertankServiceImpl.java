@@ -31,7 +31,10 @@ public class WatertankServiceImpl implements WatertankService {
             watertankViewInfo.setRegistDate(watertankList.get(i).getRegistDate());
             watertankViewInfo.setActive(watertankList.get(i).getActive());
 
-            List<WatertankStatus> statusList = watertankStatusMapper.selectAllByWatertankId(watertankViewInfo);
+            WatertankStatus status = new WatertankStatus();
+            status.setWatertankId(watertankList.get(i).getId());
+
+            List<WatertankStatus> statusList = watertankStatusMapper.selectAllByWatertankId(status);
             watertankViewInfo.setStatusList(statusList);
 
             infoList.add(watertankViewInfo);
@@ -51,7 +54,8 @@ public class WatertankServiceImpl implements WatertankService {
 
     @Override
     public void receiveWatertank(Watertank watertank) {
-        if (watertankMapper.selectById(watertank) == null) {
+        Watertank selectedWatertank = watertankMapper.selectById(watertank);
+        if (selectedWatertank == null || !selectedWatertank.getId().equals(watertank.getId())) {
             watertankMapper.insert(watertank);
         }
     }

@@ -11,7 +11,7 @@
     </select>
 
     <select id="selectAllByWatertankId"
-            parameterType="WatertankViewInfo"
+            parameterType="WatertankStatus"
             resultType="WatertankStatus">
         SELECT NO
              , WATER_TANK_ID
@@ -20,8 +20,15 @@
              , OXYGEN
              , MEASURE_TIME
         FROM WATER_TANK_STATUS
-        WHERE WATER_TANK_ID = #{id}
+        <where>
+            WATER_TANK_ID = #{watertankId}
+            <if test="measureTime != null and measureTime != ''">
+                AND MEASURE_TIME LIKE '%${measureTime}%'
+            </if>
+        </where>
+        ORDER BY MEASURE_TIME ASC
     </select>
+
 
     <insert id="insert" useGeneratedKeys="true" parameterType="WatertankStatus"
                         keyColumn="NO" keyProperty="no">

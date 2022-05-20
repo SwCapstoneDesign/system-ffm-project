@@ -52,9 +52,17 @@ public class WatertankController {
     @PostMapping("/info")
     public String receiveWatertank(Watertank watertank) {
         watertankService.receiveWatertank(watertank);
-        return "{" +
-                "\"code\" : 200" +
-                ",\"message\" : null" +
-                "}";
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("{");
+        stringBuilder.append("\"code\" : ");
+        stringBuilder.append("\"200\"");
+        stringBuilder.append(", \"message\" : ");
+        stringBuilder.append("null");
+        stringBuilder.append("}");
+
+        String response = stringBuilder.toString();
+
+        return response;
     }
 }

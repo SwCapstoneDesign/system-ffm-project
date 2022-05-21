@@ -1,6 +1,7 @@
 package kr.co.ffm.system.farmedfish;
 
 import kr.co.ffm.system.page.Page;
+import kr.co.ffm.system.page.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +15,13 @@ public class FarmedFishController {
 
     @Autowired
     private FarmedFishService farmedFishService;
+    @Autowired
+    private PageUtil pageUtil;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ModelAndView registFarmedFish(@RequestBody FarmedFish farmedFish) {
         System.out.println("farmedFish = " + farmedFish);
         ModelAndView mav = new ModelAndView("redirect:/farmedfish");
-//        farmedFishService.registFarmedFish(farmedFish);
 
         return mav;
     }
@@ -30,12 +32,16 @@ public class FarmedFishController {
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<FarmedFish> viewFarmedFishList(FarmedFish farmedFish,
-                                               Page page) {
+    public String viewFarmedFishList(FarmedFish farmedFish,
+                                     Page page) {
+
+        System.out.println("farmedFish = " + farmedFish);
+        System.out.println("page = " + page);
+
         List<FarmedFish> farmedFishList =
                 farmedFishService.viewFarmedFishList(farmedFish);
 
-        return farmedFishList;
+        return pageUtil.drawPage(page, farmedFishList);
     }
 
     @GetMapping("/{no}")

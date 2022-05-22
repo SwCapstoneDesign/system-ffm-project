@@ -13,10 +13,15 @@ import javax.servlet.http.HttpSession;
 public class AdminController {
     @Autowired
     private AdminService adminService;
+    private boolean adminMatch = true;
 
     @GetMapping("/login")
     public ModelAndView login() {
-        return new ModelAndView("admin/loginForm");
+        ModelAndView mav = new ModelAndView("admin/loginForm");
+        mav.addObject("adminMatch", adminMatch);
+        adminMatch = true;
+
+        return mav;
     }
 
     @PostMapping("/login")
@@ -24,18 +29,14 @@ public class AdminController {
                                   Errors errors,
                                   HttpSession httpSession) {
         new AdminValidator().validate(admin, errors);
-        ModelAndView mav = new ModelAndView();
+        ModelAndView mav = new ModelAndView("redirect:/login");
 
-        if (errors.hasErrors()) {
-            mav.addObject("errorMsg", "입력된 값이 없습니다.");
-            mav.setViewName("redirect:/login");
-        }
-
-        if (adminService.login(admin)) {
-            httpSession.setAttribute("id", admin.getId());
-            mav.setViewName("redirect:/Watertank/main");
-        } else {
-            mav.setViewName("redirect:/login");
+        if (adminMatch = !errors.hasErrors()){
+            adminMatch = adminService.login(admin);
+            if (adminMatch) {
+                httpSession.setAttribute("login", admin);
+                mav.setViewName("redirect:/watertank/main");
+            }
         }
 
         return mav;

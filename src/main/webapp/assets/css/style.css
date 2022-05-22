@@ -2305,7 +2305,6 @@ select [value=""] {
 .ts-compare-items-table {
     display: block;
     overflow-x: auto;
-    overflow-y: auto;
     padding-top: 1.5rem;
     width: 100%;
 }

@@ -16,6 +16,8 @@ public class WatertankServiceImpl implements WatertankService {
     private WatertankMapper watertankMapper;
     @Autowired
     private WatertankStatusMapper watertankStatusMapper;
+    @Autowired
+    private FarmedFishMapper farmedFishMapper;
 
     @Override
     public List<WatertankViewInfo> viewWatertankList(Watertank watertank) {
@@ -55,7 +57,13 @@ public class WatertankServiceImpl implements WatertankService {
     @Override
     public void receiveWatertank(Watertank watertank) {
         Watertank selectedWatertank = watertankMapper.selectById(watertank);
-        if (selectedWatertank == null || !selectedWatertank.getId().equals(watertank.getId())) {
+        if (selectedWatertank == null) {
+            FarmedFish farmedFish = new FarmedFish();
+            farmedFish.setNo(watertank.getFarmedFishNo());
+
+            FarmedFish selectedFish = farmedFishMapper.selectByNo(farmedFish);
+
+            watertank.setFarmedFishName(selectedFish.getName());
             watertankMapper.insert(watertank);
         }
     }

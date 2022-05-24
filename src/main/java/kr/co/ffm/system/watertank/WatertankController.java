@@ -1,6 +1,8 @@
 package kr.co.ffm.system.watertank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,20 +51,16 @@ public class WatertankController {
         return new ModelAndView(new RedirectView("/wartertank/" + watertank.getId()));
     }
 
-    @PostMapping("/info")
-    public String receiveWatertank(Watertank watertank) {
+    @PostMapping(value = "/info", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String receiveWatertank(@RequestBody Watertank watertank) {
         watertankService.receiveWatertank(watertank);
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("{");
-        stringBuilder.append("\"code\" : ");
-        stringBuilder.append("\"200\"");
-        stringBuilder.append(", \"message\" : ");
-        stringBuilder.append("null");
-        stringBuilder.append("}");
+        Gson response = new Gson();
 
-        String response = stringBuilder.toString();
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("code", "200");
+        jsonObject.addProperty("message", "null");
 
-        return response;
+        return response.toJson(jsonObject);
     }
 }

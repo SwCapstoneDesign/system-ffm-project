@@ -1,5 +1,7 @@
 package kr.co.ffm.system.watertankstatus;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import kr.co.ffm.system.watertank.Watertank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,16 +29,12 @@ public class WatertankStatusController {
     public String receiveWatertankStatus(WatertankStatus watertankStatus) {
         watertankStatusService.receiveWatertankStatus(watertankStatus);
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("{");
-        stringBuilder.append("\"code\" : ");
-        stringBuilder.append("\"200\"");
-        stringBuilder.append(", \"message\" : ");
-        stringBuilder.append("null");
-        stringBuilder.append("}");
+        Gson response = new Gson();
 
-        String response = stringBuilder.toString();
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("code", "200");
+        jsonObject.addProperty("message", "null");
 
-        return response;
+        return response.toJson(jsonObject);
     }
 }

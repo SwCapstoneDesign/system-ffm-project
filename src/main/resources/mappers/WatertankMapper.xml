@@ -32,16 +32,25 @@
              , ACTIVE
         FROM WATER_TANK
         <where>
-            <if test="id != null and id != ''">
-                AND ID = #{id}
-            </if>
+            <choose>
+                <when test="id != null">
+                    ID = #{id}
+                </when>
+                <otherwise>
+                    ID = null
+                </otherwise>
+            </choose>
         </where>
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" parameterType="Watertank"
-            keyColumn="NO" keyProperty="no">
+    <insert id="insert" parameterType="Watertank">
         INSERT INTO WATER_TANK
-        VALUES (#{id}, #{farmedFishNo}, #{agentIpAddress}, NOW(), 'Y')
+        VALUES (#{id}
+              , #{farmedFishNo}
+              , #{farmedFishName}
+              , #{agentIpAddress}
+              , NOW()
+              , 'Y')
     </insert>
 
     <update id="updateById"

@@ -1,38 +1,73 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 2018A00588
-  Date: 2022-05-18
-  Time: 오후 2:20
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <%@ include file="/WEB-INF/view/include/head.jsp" %>
+
+    <title>수조 상세 정보</title>
 </head>
-<body>
-    <div>
-        <h2>수조 ID</h2>
-        ${result.id}
-        <h2>양식어 명</h2>
-        ${result.farmedFishName}
-        <h2>에이전트 IP 주소</h2>
-        ${result.agentIpAddress}
-        <h2>등록일자</h2>
-        ${result.registDate}
-        <h2>활성</h2>
-        ${result.active}
-    </div>
+<body style="font-family: 'Noto Sans KR', sans-serif;">
+<div class="ts-page-wrapper ts-has-bokeh-bg" id="page-top">
+    <%@ include file="/WEB-INF/view/include/header.jsp" %>
+    <main id="ts-main">
+        <section id="page-title" style="height: 40px">
+            <div class="container">
+                <div class="ts-title mb-0">
+                    <div class="row">
+                        <div class="ts-title mb-1 col-sm-11">
+                            <h1>수조 상세 정보</h1>
+                        </div>
+                        <div class="ts-title mb-1 col-sm-1">
+                            <a href="${pageContext.servletContext.contextPath}/watertank">
+                                <button type="button" class="btn btn-primary w-100">
+                                    목록
+                                </button>
+                            </a>
+<%--                            <input class="btn btn-primary w-100" type="button" value="목록" id="search">--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="items-grid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 align-items-stretch">
+                        <div class="card h-auto">
+                            <div class="card-body ts-item__body">
+                                <div class="ts-description-lists">
+                                    <h3>수조 ID</h3>
+                                    <h4>${result.id}</h4>
+                                    <h3>양식어 명</h3>
+                                    <h4>${result.farmedFishName}</h4>
+                                    <h3>에이전트 IP 주소</h3>
+                                    <h4>${result.agentIpAddress}</h4>
+                                    <h3>등록 일자</h3>
+                                    <h4>${result.registDate}</h4>
+                                    <h3>활성</h3>
+                                    <h4>${result.active}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+<%--    <div class="ts-title">--%>
+<%--        <h1>수조 상세 정보</h1>--%>
+<%--    </div>--%>
 
-    <input type="date" id="keywordName">
-    <button id="search">검색</button>
-    <div id="table"></div>
+<%--    <input type="date" id="keywordName">--%>
+<%--    <button id="search">검색</button>--%>
+<%--    <div id="table"></div>--%>
 
-    <a href="/watertank">
-        <button type="button" >
-            목록
-        </button>
-    </a>
+<%--    <a href="/watertank">--%>
+<%--        <button type="button" >--%>
+<%--            목록--%>
+<%--        </button>--%>
+<%--    </a>--%>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -85,4 +120,5 @@
         });
     }
 </script>
+<%@ include file="/WEB-INF/view/include/bottom.jsp" %>
 </html>

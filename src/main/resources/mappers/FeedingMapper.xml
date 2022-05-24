@@ -10,7 +10,7 @@
             (`WATER_TANK_ID`
             , `FEEDING_AMOUNT`
             , `FEEDING_TIME`)
-        VALUES (#{waterTankId}
+        VALUES (#{watertankId}
                 , #{feedingAmount}
                 , now())
     </insert>
@@ -18,7 +18,9 @@
     <select id="selectAll"
             parameterType="WaterTank"
             resultType="Feeding">
-        SELECT *
+        SELECT NO
+              , FEEDING_AMOUNT
+              , substring(FEEDING_TIME, 12, 5) AS FEEDING_TIME
         FROM FEEDING
         WHERE FEEDING_TIME LIKE '%${registDate}%'
           AND WATER_TANK_ID = #{id}

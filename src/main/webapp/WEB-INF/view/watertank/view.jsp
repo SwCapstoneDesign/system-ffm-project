@@ -97,14 +97,21 @@
 <%--                        <button id="search" class="btn btn-primary w-100">검색</button>--%>
                         <h3>수조 상태 정보</h3>
                         <div class="card h-auto">
-                            <div class="card-body ts-item__body">
-                                <div id="table" class="ts-compare-items-table" style="width: 500px">
-                                </div>
+                            <div class="card-body ts-item__body" style="padding-left: 0px;padding-right: 0px;">
+                                    <div class="container">
+                                        <div id="statusTable" class="ts-compare-items-table" style="width: 500px">
+                                        </div>
+                                    </div>
                             </div>
                         </div>
+
                         <h3>급이 정보</h3>
                         <div class="card h-auto">
-                            <div class="card-body ts-item__body">
+                            <div class="card-body ts-item__body" style="padding-left: 0px;padding-right: 0px;">
+                                <div class="container">
+                                    <div id="feedingTable" class="ts-compare-items-table" style="width: 500px">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -118,9 +125,13 @@
 <script type="text/javascript">
     $(document).ready(function (){
         drawStatusTable();
+        drawFeedingTable();
         $("#search").click(function (){
-            $("#table").html("");
+            $("#statusTable").html("");
             drawStatusTable();
+
+            $("#feedingTable").html("");
+            drawFeedingTable();
         });
     });
 
@@ -137,26 +148,67 @@
             success:function (result) {
                 console.log(result)
                 var script = "";
-                script += '<section id="details">';
-                script += '    <div class="row">';
-                script += '        <div class="col ts-row-title text-center">번호</div>';
-                script += '        <div class="col ts-row-title text-center">수온</div>';
-                script += '        <div class="col ts-row-title text-center">산도</div>';
-                script += '        <div class="col ts-row-title text-center">용존산소량</div>';
-                script += '        <div class="col ts-row-title text-center">측정시간</div>';
-                script += '    </div>';
+                script += '    <table class="table">';
+                script += '        <thead  class="text-center">';
+                script += '            <tr>';
+                script += '                <th>번호</th>';
+                script += '                <th>수온</th>';
+                script += '                <th>산도</th>';
+                script += '                <th>용존 산소량</th>';
+                script += '                <th>측정 시간</th>';
+                script += '            </tr>';
+                script += '        </thead>';
+                script += '        <tbody>';
 
                 for (var i = 0; i < result.length; i++) {
-                    script += '<div class="row">'
-                    script += '    <div class="col text-center">' + result[i].no + '</div>';
-                    script += '    <div class="col text-right">' + result[i].temperature + '</div>';
-                    script += '    <div class="col text-right">' + result[i].ph + '</div>';
-                    script += '    <div class="col text-right">' + result[i].oxygen + '</div>';
-                    script += '    <div class="col text-right">' + result[i].measureTime + '</div>';
-                    script += '</div>';
+                    script += '<tr>'
+                    script += '    <td class=\"text-center\">' + result[i].no + '</td>';
+                    script += '    <td class=\"text-right\">' + result[i].temperature + '℃</td>';
+                    script += '    <td class=\"text-right\">' + result[i].ph + 'pH</td>';
+                    script += '    <td class=\"text-right\">' + result[i].oxygen + 'mg/L</td>';
+                    script += '    <td class=\"text-center\">' + result[i].measureTime + '</td>';
+                    script += '</tr>';
                 }
-                script += '</section>';
-                $("#table").html(script);
+                script += '    </tbody>';
+                script += '</table>';
+                $("#statusTable").html(script);
+            }
+        });
+    }
+
+    function drawFeedingTable() {
+        $.ajax({
+            url:'/feeding',
+            data:{
+                'id' : "${result.id}",
+                'registDate' : $("#keywordName").val()
+            },
+            type:'GET',
+            dataType:'json',
+            headers: { "Content-Type" : "application/json;charset=UTF-8" },
+            success:function (result) {
+                console.log(result)
+                var script = "";
+                script += '    <table class="table">';
+                script += '        <thead  class="text-center">';
+                script += '            <tr>';
+                script += '                <th>번호</th>';
+                script += '                <th>급여 량</th>';
+                script += '                <th>급이 시간</th>';
+                script += '            </tr>';
+                script += '        </thead>';
+                script += '        <tbody>';
+
+                for (var i = 0; i < result.length; i++) {
+                    script += '<tr>'
+                    script += '    <td class=\"text-center\">' + result[i].no + '</td>';
+                    script += '    <td class=\"text-right\">' + result[i].feedingAmount + 'g</td>';
+                    script += '    <td class=\"text-center\">' + result[i].feedingTime + '</td>';
+                    script += '</tr>';
+                }
+                script += '    </tbody>';
+                script += '</table>';
+                $("#feedingTable").html(script);
             }
         });
     }

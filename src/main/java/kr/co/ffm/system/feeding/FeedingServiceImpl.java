@@ -23,7 +23,7 @@ public class FeedingServiceImpl implements FeedingService {
     @Override
     public void receiveFeeding(Feeding feeding) {
         Watertank watertank = new Watertank();
-        watertank.setId(feeding.getWaterTankId());
+        watertank.setId(feeding.getWatertankId());
 
         if (watertankMapper.selectById(watertank) != null) {
             feedingMapper.insert(feeding);

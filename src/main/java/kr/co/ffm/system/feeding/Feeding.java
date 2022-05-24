@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Feeding {
     private int no;
-    private String waterTankId;
+    private String watertankId;
     private int feedingAmount;
     private String feedingTime;
 }

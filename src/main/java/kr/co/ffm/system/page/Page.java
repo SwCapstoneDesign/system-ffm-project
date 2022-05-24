@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Data
 public class Page implements Serializable {
-    private String id;
+    private int no;
     private int StartPageNo;
     private int EndPageNo;
     private int finalPageNo;

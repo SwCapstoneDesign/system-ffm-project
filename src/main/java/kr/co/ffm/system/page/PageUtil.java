@@ -11,9 +11,9 @@ public class PageUtil {
     private static final int PAGE_SIZE = 5;
     private static final int ROW_SIZE = 10;
 
-    public Page setPage(String parasolId ,int totallRowCount, int pageNo) {
+    public Page setPage(int farmedFishNo ,int totallRowCount, int pageNo) {
         Page page = new Page();
-        page.setId(parasolId);
+        page.setNo(farmedFishNo);
         page.setTotalRowCount(totallRowCount);
         page.setFinalPageNo(this.getFinalPageNo(totallRowCount));
         page.setStartPageNo(this.getStartPage(pageNo));
@@ -58,8 +58,8 @@ public class PageUtil {
 
         if (farmedFishList.size() > 0) {
             drawPage.append("    <section id=\"compared-properties\" class=\"py-0\" style=\"height: 350px\">");
-            drawPage.append("        <div class=\"container\">");
-            drawPage.append("            <div class=\"ts-compare-items-table\">");
+            drawPage.append("        <div class=\"container\" style=\"margin-left: 120px;\">");
+            drawPage.append("            <div class=\"ts-compare-items-table\" style=\"width: 1200px;\">");
             drawPage.append("                <section id=\"details\">");
             drawPage.append("                    <div class=\"row\">");
             drawPage.append("                        <div class=\"col ts-row-title text-center\">NO</div>");
@@ -91,15 +91,15 @@ public class PageUtil {
 
             if (page.getStartPageNo() != 1) {
                 drawPage.append("<li class=\"page-item\">");
-                drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"pageOver(" + 1 + ")\">처음</a>");
+                drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"searchFishByName(" + 1 + ")\">처음</a>");
                 drawPage.append("</li>");
                 if ((page.getStartPageNo() - 25) > 0) {
                     drawPage.append("<li class=\"page-item\">");
-                    drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"pageOver(" + (page.getEndPageNo() -  (PAGE_SIZE * 5)) + ")\">-5</a>");
+                    drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"searchFishByName(" + (page.getEndPageNo() -  (PAGE_SIZE * 5)) + ")\">-5</a>");
                     drawPage.append("</li>");
                 }
                 drawPage.append("<li class=\"page-item\">");
-                drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"pageOver(" + (page.getStartPageNo() -  1) + ")\">이전</a>");
+                drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"searchFishByName(" + (page.getStartPageNo() -  1) + ")\">이전</a>");
                 drawPage.append("</li>");
             }
 
@@ -109,11 +109,11 @@ public class PageUtil {
             for (int i = page.getStartPageNo(); i <= page.getEndPageNo(); i++) {
                 if (i == page.getPageNo()) {
                     drawPage.append("<li class=\"page-item active\">");
-                    drawPage.append("    <a class=\"page-link\" href=\"javascript:void(0);\" onclick=\"pageOver(" + i + ")\">" + i + "</a>");
+                    drawPage.append("    <a class=\"page-link\" href=\"javascript:void(0);\" onclick=\"searchFishByName(" + i + ")\">" + i + "</a>");
                     drawPage.append("</li>");
                 } else {
                     drawPage.append("<li class=\"page-item\">");
-                    drawPage.append("    <a class=\"page-link\" href=\"javascript:void(0);\" onclick=\"pageOver(" + i + ")\">" + i + "</a>");
+                    drawPage.append("    <a class=\"page-link\" href=\"javascript:void(0);\" onclick=\"searchFishByName(" + i + ")\">" + i + "</a>");
                     drawPage.append("</li>");
                 }
             }
@@ -123,15 +123,15 @@ public class PageUtil {
 
             if (page.getEndPageNo() != page.getFinalPageNo()) {
                 drawPage.append("<li class=\"page-item\">");
-                drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"pageOver(" + (page.getEndPageNo() +  1) + ")\">다음</a>");
+                drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"searchFishByName(" + (page.getEndPageNo() +  1) + ")\">다음</a>");
                 drawPage.append("</li>");
                 if ((page.getStartPageNo() + 25) < page.getFinalPageNo()) {
                     drawPage.append("<li class=\"page-item\">");
-                    drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"pageOver(" + (page.getStartPageNo() +  (PAGE_SIZE * 5)) + ")\">+5</a>");
+                    drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"searchFishByName(" + (page.getStartPageNo() +  (PAGE_SIZE * 5)) + ")\">+5</a>");
                     drawPage.append("</li>");
                 }
                 drawPage.append("<li class=\"page-item\">");
-                drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"pageOver(" + page.getFinalPageNo() + ")\">마지막</a>");
+                drawPage.append("    <a class=\"page-link border ts-btn-arrow\" href=\"javascript:void(0);\" onclick=\"searchFishByName(" + page.getFinalPageNo() + ")\">마지막</a>");
                 drawPage.append("</li>");
             }
 

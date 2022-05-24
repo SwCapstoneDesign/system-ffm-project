@@ -34,6 +34,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
+                                        <form action="/farmedfish" method="post">
                                         <div class="modal-body">
                                             <table>
                                                 <tr>
@@ -120,8 +121,9 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                                            <button type="button" id="registFarmedFish" class="btn btn-primary">등록</button>
+                                            <button type="submit"  class="btn btn-primary">등록</button>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +138,6 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" >
-    // searchFishByName(1);
 
     $(document).ready(function (){
         searchFishByName(1);
@@ -151,32 +152,6 @@
         });
     });
 
-    // var xmlHttpRequest;
-    //
-    // function searchFishByName(pageNo) {
-    //     xmlHttpRequest = new XMLHttpRequest();
-    //     //
-    //     // var data = {
-    //     //     "name" : document.getElementById("searchFarmedFishByName").value
-    //     //     , "pageNo" : pageNo
-    //     // }
-    //
-    //     xmlHttpRequest.open("GET", "/farmedfish", true);
-    //     xmlHttpRequest.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-    //     xmlHttpRequest.send('{"pageNo" : "' + pageNo + '", "name" : "' + document.getElementById("searchFarmedFishByName").value +'"}');
-    //     xmlHttpRequest.onreadystatechange = getData;
-    // }
-    //
-    // function getData() {
-    //     let drawData;
-    //     if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
-    //         drawData = xmlHttpRequest.responseText;
-    //         if (drawData != null) {
-    //             document.getElementById("drawInfo").innerHTML = drawData;
-    //         }
-    //     }
-    // }
-
     function searchFishByName(pageNo) {
         $.ajax({
             url: '/farmedfish',
@@ -188,8 +163,9 @@
             dataType: 'json',
             headers: {"Content-Type": "application/json;charset=UTF-8"}
         }).always(function (row) {
+            var text = row.responseText;
 
-            $("#drawInfo").html(row);
+            $("#drawInfo").html(text);
         });
     }
 

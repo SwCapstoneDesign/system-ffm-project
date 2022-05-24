@@ -47,8 +47,8 @@
 
     <update id="updateByNo"
             parameterType="FarmedFish">
-        UPDATE TABLE FARMED_FISH
-        SET ACTIVE = 'N'
+        UPDATE FARMED_FISH
+        SET ACTIVE = #{active}
         WHERE NO = #{no}
     </update>
 </mapper>

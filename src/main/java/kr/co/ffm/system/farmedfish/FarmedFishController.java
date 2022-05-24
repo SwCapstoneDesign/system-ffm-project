@@ -18,28 +18,29 @@ public class FarmedFishController {
     @Autowired
     private PageUtil pageUtil;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ModelAndView registFarmedFish(@RequestBody FarmedFish farmedFish) {
-        System.out.println("farmedFish = " + farmedFish);
-        ModelAndView mav = new ModelAndView("redirect:/farmedfish");
+    @PostMapping
+    public ModelAndView registFarmedFish(FarmedFish farmedFish) {
+        System.out.println("farmedFish.getFeedingTime = " + farmedFish.getFeedingTime());
+        farmedFishService.registFarmedFish(farmedFish);
 
-        return mav;
+        return new ModelAndView("redirect:/farmedfish");
     }
 
     @GetMapping
     public ModelAndView viewFarmedFishList() {
+
         return new ModelAndView("farmedfish/list");
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public String viewFarmedFishList(FarmedFish farmedFish,
                                      Page page) {
-
-        System.out.println("farmedFish = " + farmedFish);
-        System.out.println("page = " + page);
-
         List<FarmedFish> farmedFishList =
                 farmedFishService.viewFarmedFishList(farmedFish);
+
+        page = pageUtil.setPage(farmedFish.getNo(),
+                                farmedFishList.size(),
+                                page.getPageNo());
 
         return pageUtil.drawPage(page, farmedFishList);
     }
@@ -55,7 +56,14 @@ public class FarmedFishController {
     @PutMapping
     public ModelAndView editFarmedFish(FarmedFish farmedFish) {
         ModelAndView mav = new ModelAndView("redirect:/farmedfish/" + farmedFish.getNo());
-        farmedFishService.editFarmedFish(farmedFish);
+
+        if (farmedFishService.viewFarmedFish(farmedFish).getActive().equals("Y")) {
+            farmedFish.setActive("N");
+            farmedFishService.editFarmedFish(farmedFish);
+        } else {
+            farmedFish.setActive("Y");
+            farmedFishService.editFarmedFish(farmedFish);
+        }
 
         return mav;
     }

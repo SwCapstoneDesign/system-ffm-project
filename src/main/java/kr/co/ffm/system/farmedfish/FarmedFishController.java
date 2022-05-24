@@ -2,11 +2,15 @@ package kr.co.ffm.system.farmedfish;
 
 import kr.co.ffm.system.page.Page;
 import kr.co.ffm.system.page.PageUtil;
+import kr.co.ffm.system.watertank.Watertank;
+import kr.co.ffm.system.watertank.WatertankService;
+import kr.co.ffm.system.watertank.WatertankViewInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -15,6 +19,8 @@ public class FarmedFishController {
 
     @Autowired
     private FarmedFishService farmedFishService;
+    @Autowired
+    private WatertankService watertankService;
     @Autowired
     private PageUtil pageUtil;
 
@@ -49,6 +55,24 @@ public class FarmedFishController {
     public ModelAndView viewFarmedFish(FarmedFish farmedFish) {
         ModelAndView mav = new ModelAndView("farmedfish/view");
         mav.addObject("farmedFish", farmedFishService.viewFarmedFish(farmedFish));
+
+        Watertank watertank = new Watertank();
+        watertank.setFarmedFishNo(farmedFish.getNo());
+
+        List<WatertankViewInfo> watertankViewInfoList = watertankService.viewWatertankList(watertank);
+        System.out.println(watertankService.viewWatertankList(watertank));
+
+        if (watertankViewInfoList.size() != 0) {
+            Iterator<WatertankViewInfo> iterator = watertankViewInfoList.iterator();
+            //해당 양식어를 사용하는 수조 중에서 하나라도 활성 상태면 비활성으로 못 바꾸게 한다.
+            while (iterator.hasNext()) {
+                if (iterator.next().getActive().equals("Y")) {
+                    mav.addObject("existence", true);
+                    return mav;
+                }
+            }
+        }
+        mav.addObject("existence", false);
 
         return mav;
     }

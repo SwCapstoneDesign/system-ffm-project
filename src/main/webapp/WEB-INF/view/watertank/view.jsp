@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <%@ include file="/WEB-INF/view/include/head.jsp" %>
@@ -35,16 +36,52 @@
                         <div class="card h-auto">
                             <div class="card-body ts-item__body">
                                 <div class="ts-description-lists">
-                                    <h3>수조 ID</h3>
-                                    <h4>${result.id}</h4>
-                                    <h3>양식어 명</h3>
-                                    <h4>${result.farmedFishName}</h4>
-                                    <h3>에이전트 IP 주소</h3>
-                                    <h4>${result.agentIpAddress}</h4>
-                                    <h3>등록 일자</h3>
-                                    <h4>${result.registDate}</h4>
-                                    <h3>활성</h3>
-                                    <h4>${result.active}</h4>
+                                    <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">수조 ID</label>
+                                    <p style="font-size: 1.5em">${result.id}</p>
+                                    <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">양식어 명</label>
+                                    <p style="font-size: 1.5em">${result.farmedFishName}</p>
+                                    <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">에이전트 IP 주소</label>
+                                    <p style="font-size: 1.5em">${result.agentIpAddress}</p>
+                                    <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">등록 일자</label>
+                                    <p style="font-size: 1.5em">${result.registDate}</p>
+                                    <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">활성</label>
+                                    <c:choose>
+                                        <c:when test="${result.active == 'Y'}">
+                                            <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 : 비활성 버튼">
+                                            <button type="button" class="card ts-item ts-card ts-result border text-primary" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${result.active}</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 : 활성 버튼">
+                                            <button type="button" class="card ts-item ts-card ts-result border text-danger" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${result.active}</button>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                                <div class="modal fade" id="activeCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="activeLongTitle">활성화 변경</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="/watertank" method="post">
+                                                <input type="hidden" name="_method" value="put">
+                                                <input type="hidden" name="id" value="${result.id}">
+                                                <div class="modal-body">
+                                                    <c:choose>
+                                                        <c:when test="${result.active == 'Y'}">
+                                                            <h3 class="form-check">비활성 상태로 변경하시겠습니까?</h3>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                                    <button type="submit" class="btn btn-primary">확인</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -54,19 +91,6 @@
         </section>
     </main>
 </div>
-<%--    <div class="ts-title">--%>
-<%--        <h1>수조 상세 정보</h1>--%>
-<%--    </div>--%>
-
-<%--    <input type="date" id="keywordName">--%>
-<%--    <button id="search">검색</button>--%>
-<%--    <div id="table"></div>--%>
-
-<%--    <a href="/watertank">--%>
-<%--        <button type="button" >--%>
-<%--            목록--%>
-<%--        </button>--%>
-<%--    </a>--%>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">

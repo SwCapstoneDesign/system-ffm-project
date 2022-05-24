@@ -41,8 +41,14 @@
                                             <label class="badge badge-light p-2" style="text-align: center; font-size: 1.3em; font-weight: 500; width: 55px">활성</label>
                                             <c:choose>
                                                 <c:when test="${farmedFish.active == 'Y'}">
-                                                    <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 : 비활성 버튼">
-                                                    <button type="button" class="card ts-item ts-card ts-result border text-primary" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${farmedFish.active}</button>
+                                                    <c:if test="${!existence}">
+                                                        <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 : 비활성 버튼">
+                                                        <button type="button" class="card ts-item ts-card ts-result border text-primary" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${farmedFish.active}</button>
+                                                    </c:if>
+                                                    <c:if test="${existence}">
+                                                        <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 불가능">
+                                                        <button type="button" class="card ts-item ts-card ts-result border" style="font-size: 1.5em" >${farmedFish.active}</button>
+                                                    </c:if>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 : 활성 버튼">
@@ -61,22 +67,22 @@
                                                     </button>
                                                 </div>
                                                 <form action="/farmedfish" method="post">
-                                                <input type="hidden" name="_method" value="put">
-                                                <input type="hidden" name="no" value="${farmedFish.no}">
-                                                <div class="modal-body">
-                                                    <c:choose>
-                                                        <c:when test="${farmedFish.active == 'Y'}">
-                                                            <h3 class="form-check">비활성 상태로 변경하시겠습니까?</h3>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <h3 class="form-check">활성 상태로 변경하시겠습니까?</h3>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                                                    <button type="submit" class="btn btn-primary">확인</button>
-                                                </div>
+                                                    <input type="hidden" name="_method" value="put">
+                                                    <input type="hidden" name="no" value="${farmedFish.no}">
+                                                    <div class="modal-body">
+                                                        <c:choose>
+                                                            <c:when test="${farmedFish.active == 'Y'}">
+                                                                <h3 class="form-check">비활성 상태로 변경하시겠습니까?</h3>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <h3 class="form-check">활성 상태로 변경하시겠습니까?</h3>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                                        <button type="submit" class="btn btn-primary">확인</button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
@@ -106,12 +112,6 @@
                                             <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">용존 산소량</label>
                                             <p style="font-size: 1.5em">${farmedFish.oxygen}</p>
                                         </div>
-<%--                                        <div class="col-sm-auto">--%>
-<%--                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">설치주소</label>--%>
-<%--                                            <button type="button" class="card ts-item ts-card ts-result border"  data-toggle="modal" data-target="#modalCenter">--%>
-<%--                                                <p style="font-size: 1.5em" title="설치주소 변경 버튼" data-toggle="tooltip" data-placement="bottom">${parasol.installAddress}</p>--%>
-<%--                                            </button>--%>
-<%--                                        </div>--%>
                                     </div>
                                 </section>
                             </div>

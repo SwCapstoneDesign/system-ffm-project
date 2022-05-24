@@ -44,7 +44,7 @@ public class WatertankController {
         return mov;
     }
 
-    @PostMapping
+    @PutMapping
     public ModelAndView editWatertank(Watertank watertank) {
         watertankService.editWatertank(watertank);
 

@@ -8,6 +8,9 @@
                     <li class="nav-item">
                         <a class="nav-link px-3" style="font-size: 1.5em" href="/watertank">메인</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" style="font-size: 1.5em" href="/farmedfish">양식어</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ml-4">
                     <li class="nav-item">

@@ -18,6 +18,9 @@
             <if test="farmedFishName != null and farmedFishName !=''">
                 AND FARMED_FISH_NAME = #{farmedFishName}
             </if>
+            <if test="farmedFishNo != 0">
+                AND FARMED_FISH_NO = #{farmedFishNo}
+            </if>
         </where>
     </select>
 

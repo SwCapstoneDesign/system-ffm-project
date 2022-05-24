@@ -35,7 +35,7 @@ public class AdminController {
             adminMatch = adminService.login(admin);
             if (adminMatch) {
                 httpSession.setAttribute("login", admin);
-                mav.setViewName("redirect:/watertank/main");
+                mav.setViewName("redirect:/watertank");
             }
         }
 

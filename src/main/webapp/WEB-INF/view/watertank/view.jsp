@@ -86,6 +86,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-1 col-lg-6">
+                        <label>
+                            <input type="date" id="keywordName" class="form-control float-right">
+                        </label>
+                        <label>
+                            <button id="search" class="btn btn-primary w-100 float-right">검색</button>
+                        </label>
+<%--                        <input type="date" id="keywordName" class="form-control">--%>
+<%--                        <button id="search" class="btn btn-primary w-100">검색</button>--%>
+                        <h3>수조 상태 정보</h3>
+                        <div class="card h-auto">
+                            <div class="card-body ts-item__body">
+                                <div id="table" class="ts-compare-items-table" style="width: 500px">
+                                </div>
+                            </div>
+                        </div>
+                        <h3>급이 정보</h3>
+                        <div class="card h-auto">
+                            <div class="card-body ts-item__body">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -115,29 +137,25 @@
             success:function (result) {
                 console.log(result)
                 var script = "";
-                script += '<table id="table" border="1">';
-                script += '<thead>';
-                script += '<tr>';
-                script += '    <th>no</th>';
-                script += '    <th>수온</th>';
-                script += '    <th>산도</th>';
-                script += '    <th>용존산소량</th>';
-                script += '    <th>측정시간</th>';
-                script += '</tr>';
-                script += '</thead>';
-                script += '<tbody>';
+                script += '<section id="details">';
+                script += '    <div class="row">';
+                script += '        <div class="col ts-row-title text-center">번호</div>';
+                script += '        <div class="col ts-row-title text-center">수온</div>';
+                script += '        <div class="col ts-row-title text-center">산도</div>';
+                script += '        <div class="col ts-row-title text-center">용존산소량</div>';
+                script += '        <div class="col ts-row-title text-center">측정시간</div>';
+                script += '    </div>';
 
                 for (var i = 0; i < result.length; i++) {
-                    script += '<tr>'
-                    script += '    <td>' + result[i].no + '</td>';
-                    script += '    <td>' + result[i].temperature + '</td>';
-                    script += '    <td>' + result[i].ph + '</td>';
-                    script += '    <td>' + result[i].oxygen + '</td>';
-                    script += '    <td>' + result[i].measureTime + '</td>';
-                    script += '</tr>';
+                    script += '<div class="row">'
+                    script += '    <div class="col text-center">' + result[i].no + '</div>';
+                    script += '    <div class="col text-right">' + result[i].temperature + '</div>';
+                    script += '    <div class="col text-right">' + result[i].ph + '</div>';
+                    script += '    <div class="col text-right">' + result[i].oxygen + '</div>';
+                    script += '    <div class="col text-right">' + result[i].measureTime + '</div>';
+                    script += '</div>';
                 }
-                script += '</tbody>';
-                script += '</table>';
+                script += '</section>';
                 $("#table").html(script);
             }
         });

@@ -14,9 +14,16 @@
             <div class="container">
                 <div class="ts-title mb-0">
                     <div class="row">
-                        <div class="ts-title mb-1 col-sm-11">
+                        <div class="ts-title mb-1 col-sm-3">
                             <h1>수조 상세 정보</h1>
                         </div>
+                        <div class="ts-title mb-1 col-sm-2">
+                            <input type="date" id="keywordName" class="form-control float-right">
+                        </div>
+                        <div class="ts-title mb-1 col-sm-1">
+                            <button id="search" class="btn btn-primary w-100 float-right">검색</button>
+                        </div>
+                        <div class="ts-title mb-1 col-sm-5"></div>
                         <div class="ts-title mb-1 col-sm-1">
                             <a href="${pageContext.servletContext.contextPath}/watertank">
                                 <button type="button" class="btn btn-primary w-100">
@@ -35,23 +42,23 @@
                     <div class="col-sm-12 col-lg-6 align-items-stretch">
                         <div class="card h-auto">
                             <div class="card-body ts-item__body">
-                                <div class="ts-description-lists">
+                                <div class="ts-description-lists" style="height: 700px;">
                                     <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">수조 ID</label>
-                                    <p style="font-size: 1.5em">${result.id}</p>
+                                    <p style="font-size: 1.5em;margin-bottom: 30px;">${result.id}</p>
                                     <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">양식어 명</label>
                                     <p style="font-size: 1.5em">${result.farmedFishName}</p>
                                     <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">에이전트 IP 주소</label>
-                                    <p style="font-size: 1.5em">${result.agentIpAddress}</p>
+                                    <p style="font-size: 1.5em;margin-bottom: 30px;">${result.agentIpAddress}</p>
                                     <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">등록 일자</label>
-                                    <p style="font-size: 1.5em">${result.registDate}</p>
+                                    <p style="font-size: 1.5em;margin-bottom: 30px;">${result.registDate}</p>
                                     <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">활성</label>
                                     <c:choose>
                                         <c:when test="${result.active == 'Y'}">
-                                            <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 : 비활성 버튼">
+                                            <h3 class="p-2" style="width: 75.2px;" data-toggle="tooltip" data-placement="right" title="상태 변경 : 비활성 버튼">
                                             <button type="button" class="card ts-item ts-card ts-result border text-primary" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${result.active}</button>
                                         </c:when>
                                         <c:otherwise>
-                                            <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 : 활성 버튼">
+                                            <h3 class="p-2" style="width: 75.2px;" data-toggle="tooltip" data-placement="right" title="상태 변경 : 활성 버튼">
                                             <button type="button" class="card ts-item ts-card ts-result border text-danger" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${result.active}</button>
                                         </c:otherwise>
                                     </c:choose>
@@ -87,19 +94,19 @@
                         </div>
                     </div>
                     <div class="col-sm-1 col-lg-6">
-                        <label>
-                            <input type="date" id="keywordName" class="form-control float-right">
-                        </label>
-                        <label>
-                            <button id="search" class="btn btn-primary w-100 float-right">검색</button>
-                        </label>
+<%--                        <label>--%>
+<%--                            <input type="date" id="keywordName" class="form-control float-right">--%>
+<%--                        </label>--%>
+<%--                        <label>--%>
+<%--                            <button id="search" class="btn btn-primary w-100 float-right">검색</button>--%>
+<%--                        </label>--%>
 <%--                        <input type="date" id="keywordName" class="form-control">--%>
 <%--                        <button id="search" class="btn btn-primary w-100">검색</button>--%>
                         <h3>수조 상태 정보</h3>
                         <div class="card h-auto">
                             <div class="card-body ts-item__body" style="padding-left: 0px;padding-right: 0px;">
                                     <div class="container">
-                                        <div id="statusTable" class="ts-compare-items-table" style="width: 500px">
+                                        <div id="statusTable" class="ts-compare-items-table" style="overflow:auto; width: 500px; height:300px">
                                         </div>
                                     </div>
                             </div>
@@ -109,7 +116,7 @@
                         <div class="card h-auto">
                             <div class="card-body ts-item__body" style="padding-left: 0px;padding-right: 0px;">
                                 <div class="container">
-                                    <div id="feedingTable" class="ts-compare-items-table" style="width: 500px">
+                                    <div id="feedingTable" class="ts-compare-items-table" style="overflow:auto; width: 500px; height:175px">
                                     </div>
                                 </div>
                             </div>

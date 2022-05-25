@@ -1,5 +1,7 @@
 package kr.co.ffm.system.feeding;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import kr.co.ffm.system.farmedfish.FarmedFish;
 import kr.co.ffm.system.watertank.Watertank;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,13 @@ public class FeedingController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public String receiveFeeding(@RequestBody Feeding feeding) {
         feedingService.receiveFeeding(feeding);
-        return null;
+
+        Gson gson = new Gson();
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("code", "200");
+        jsonObject.addProperty("message", "null");
+
+        return gson.toJson(jsonObject);
     }
 }

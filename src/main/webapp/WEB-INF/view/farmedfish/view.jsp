@@ -38,21 +38,21 @@
                                             <h3 style="font-size: 1.8em" class="mb-1 border-bottom">${farmedFish.name}</h3>
                                         </div>
                                         <div class="d-flex align-items-start flex-column" style="text-align: center">
-                                            <label class="badge badge-light p-2" style="text-align: center; font-size: 1.3em; font-weight: 500; width: 55px">활성</label>
+                                            <label class="badge badge-light p-2" style="text-align: center; font-size: 1.3em; font-weight: 500; width: 55px">상태</label>
                                             <c:choose>
                                                 <c:when test="${farmedFish.active == 'Y'}">
                                                     <c:if test="${!existence}">
                                                         <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 : 비활성 버튼">
-                                                        <button type="button" class="card ts-item ts-card ts-result border text-primary" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${farmedFish.active}</button>
+                                                        <button type="button" class="card ts-item ts-card ts-result border text-primary" style="font-size: 1em" data-toggle="modal" data-target="#activeCenter">비활성</button>
                                                     </c:if>
                                                     <c:if test="${existence}">
                                                         <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 불가능 : 사용중인 양식어 정보">
-                                                        <button type="button" class="card ts-item ts-card ts-result border" style="font-size: 1.5em" >${farmedFish.active}</button>
+                                                        <button type="button" class="card ts-item ts-card ts-result border" style="font-size: 1em" >비활성</button>
                                                     </c:if>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 : 활성 버튼">
-                                                    <button type="button" class="card ts-item ts-card ts-result border text-danger" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${farmedFish.active}</button>
+                                                    <button type="button" class="card ts-item ts-card ts-result border text-danger" style="font-size: 1em" data-toggle="modal" data-target="#activeCenter">활성</button>
                                                 </c:otherwise>
                                             </c:choose>
                                         </div>

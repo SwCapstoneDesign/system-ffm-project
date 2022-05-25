@@ -18,11 +18,14 @@
                             <div class="ts-title mb-0 col-sm-4">
                                 <h1 style="font-weight : 400">양식어</h1>
                             </div>
-                            <div class="ts-title mb-1 col-sm-6">
-                                <input type="text" id = "searchFarmedFishByName" name="searchFarmedFishByName" placeholder="양식어명">
-                                <input type="button" value="검색" id="search">
+                            <div class="ts-title mb-1 col-sm-3" style="padding-right: 0px;">
+                                <input class="form-control"  type="text" id = "searchFarmedFishByName" name="searchFarmedFishByName" placeholder="양식어명">
                             </div>
-                            <div class="ts-title mb-2 col-sm-2" style="text-align: center">
+                            <div class="ts-title mb-2 col-sm-1" style="padding-left: 5px;">
+                                <input class="btn btn-primary w-100" type="button" value="검색" id="search">
+                            </div>
+                            <div class="ts-title mb-3 col-sm-2"></div>
+                            <div class="ts-title mb-4 col-sm-2" style="text-align: center">
                                 <button type="button" class="card btn-outline-primary btn-sm m-1 px-3" data-toggle="modal" data-target="#modalCenter" style="font-size: 1.3em"> 등록 </button>
                             </div>
                             <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -18,13 +18,12 @@
                             <h1>수조 상세 정보</h1>
                         </div>
                         <div class="ts-title mb-1 col-sm-8"></div>
-                        <div class="ts-title mb-1 col-sm-1">
+                        <div class="ts-title mb-1 col-sm-1" style="padding-left: 0px;">
                             <a href="${pageContext.servletContext.contextPath}/watertank">
-                                <button type="button" class="btn btn-primary w-100">
+                                <button type="button" class="card btn-outline-primary btn-sm m-1 px-3"  style="font-size: 1.3em;width: 70.4px;">
                                     목록
                                 </button>
                             </a>
-<%--                            <input class="btn btn-primary w-100" type="button" value="목록" id="search">--%>
                         </div>
                     </div>
                 </div>
@@ -45,15 +44,15 @@
                                     <p style="font-size: 1.5em;margin-bottom: 30px;">${result.agentIpAddress}</p>
                                     <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">등록 일자</label>
                                     <p style="font-size: 1.5em;margin-bottom: 30px;">${result.registDate}</p>
-                                    <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">활성</label>
+                                    <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">상태</label>
                                     <c:choose>
                                         <c:when test="${result.active == 'Y'}">
-                                            <h3 class="p-2" style="width: 75.2px;" data-toggle="tooltip" data-placement="right" title="상태 변경 : 비활성 버튼">
-                                            <button type="button" class="card ts-item ts-card ts-result border text-primary" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${result.active}</button>
+                                            <h3 class="p-2" style="width: 100px;" data-toggle="tooltip" data-placement="right" title="상태 변경 : 비활성 버튼">
+                                            <button type="button" class="card ts-item ts-card ts-result border text-primary" style="font-size: 1em" data-toggle="modal" data-target="#activeCenter">비활성</button>
                                         </c:when>
                                         <c:otherwise>
-                                            <h3 class="p-2" style="width: 75.2px;" data-toggle="tooltip" data-placement="right" title="상태 변경 : 활성 버튼">
-                                            <button type="button" class="card ts-item ts-card ts-result border text-danger" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${result.active}</button>
+                                            <h3 class="p-2" style="width: 100px;" data-toggle="tooltip" data-placement="right" title="상태 변경 : 활성 버튼">
+                                            <button type="button" class="card ts-item ts-card ts-result border text-danger" style="font-size: 1em" data-toggle="modal" data-target="#activeCenter">활성</button>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>

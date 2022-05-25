@@ -48,7 +48,7 @@
         $.ajax({
             url:'/watertank',
             data:{
-                'farmedFishName' : $("#keywordName").val()
+                'farmedFishName' : $("#searchFarmedFishByName").val()
             },
             type:'GET',
             dataType:'json',
@@ -69,19 +69,19 @@
                     if(result[i].statusList.length < 1) {
                         script += '                    수온 : null <br>'
                     } else {
-                        script += '                    수온 :' + result[i].statusList[0].temperature + '<br>'
+                        script += '                    수온 :' + result[i].statusList[result[i].statusList.length - 1].temperature + '<br>'
                     }
 
                     if(result[i].statusList.length < 1) {
                         script += '                    산도 : null <br>'
                     } else {
-                        script += '                    산도 :' + result[i].statusList[0].ph + '<br>'
+                        script += '                    산도 :' + result[i].statusList[result[i].statusList.length - 1].ph + '<br>'
                     }
 
                     if(result[i].statusList.length < 1) {
                         script += '                    용존산소량 : null'
                     } else {
-                        script += '                    용존산소량 :' + result[i].statusList[0].oxygen
+                        script += '                    용존산소량 :' + result[i].statusList[result[i].statusList.length - 1].oxygen
                     }
 
                     script += '                </div>'

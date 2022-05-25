@@ -5,6 +5,8 @@ import kr.co.ffm.system.watertank.Watertank;
 import kr.co.ffm.system.watertank.WatertankMapper;
 import okhttp3.*;
 import okio.BufferedSink;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class ControlServiceImpl implements ControlService {
 
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
+
+    private Logger logger = LogManager.getLogger(ControlServiceImpl.class);
 
     @Autowired
     private WatertankMapper watertankMapper;
@@ -49,8 +53,24 @@ public class ControlServiceImpl implements ControlService {
                         : null;
             }
 
+            if ("200".equals(responseCode.split(":")[1].split("\"")[1])) {
+                logger.info("----------INFO----------");
+                logger.info("| Send Control is Success |");
+                logger.info("-------------------------");
+            } else {
+                logger.error("**********ERROR**********");
+                logger.error("* " + responseCode.split(":")[2].split("\"")[1] + " *");
+                logger.error("*************************");
+            }
+
+            logger.info("----------INFO----------");
+            logger.info("| " + responseCode + " |");
+            logger.info("------------------------");
+
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info("----------INFO----------");
+            logger.info("| Exception Occurred in method sendControl |");
+            logger.info("------------------------");
         }
 
         return responseCode;

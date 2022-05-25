@@ -17,13 +17,7 @@
                         <div class="ts-title mb-1 col-sm-3">
                             <h1>수조 상세 정보</h1>
                         </div>
-                        <div class="ts-title mb-1 col-sm-2">
-                            <input type="date" id="keywordName" class="form-control float-right">
-                        </div>
-                        <div class="ts-title mb-1 col-sm-1">
-                            <button id="search" class="btn btn-primary w-100 float-right">검색</button>
-                        </div>
-                        <div class="ts-title mb-1 col-sm-5"></div>
+                        <div class="ts-title mb-1 col-sm-8"></div>
                         <div class="ts-title mb-1 col-sm-1">
                             <a href="${pageContext.servletContext.contextPath}/watertank">
                                 <button type="button" class="btn btn-primary w-100">
@@ -42,11 +36,11 @@
                     <div class="col-sm-12 col-lg-6 align-items-stretch">
                         <div class="card h-auto">
                             <div class="card-body ts-item__body">
-                                <div class="ts-description-lists" style="height: 700px;">
+                                <div class="ts-description-lists" style="height: 658px;">
                                     <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">수조 ID</label>
                                     <p style="font-size: 1.5em;margin-bottom: 30px;">${result.id}</p>
                                     <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">양식어 명</label>
-                                    <p style="font-size: 1.5em">${result.farmedFishName}</p>
+                                    <p style="font-size: 1.5em;margin-bottom: 30px;">${result.farmedFishName}</p>
                                     <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">에이전트 IP 주소</label>
                                     <p style="font-size: 1.5em;margin-bottom: 30px;">${result.agentIpAddress}</p>
                                     <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">등록 일자</label>
@@ -93,30 +87,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-1 col-lg-6">
-<%--                        <label>--%>
-<%--                            <input type="date" id="keywordName" class="form-control float-right">--%>
-<%--                        </label>--%>
-<%--                        <label>--%>
-<%--                            <button id="search" class="btn btn-primary w-100 float-right">검색</button>--%>
-<%--                        </label>--%>
-<%--                        <input type="date" id="keywordName" class="form-control">--%>
-<%--                        <button id="search" class="btn btn-primary w-100">검색</button>--%>
-                        <h3>수조 상태 정보</h3>
-                        <div class="card h-auto">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-sm-12 col-lg-5">
+                                <h3 style="margin-bottom: 0px;">수조 상태 정보</h3>
+                            </div>
+                            <div class="col-sm-12 col-lg-5" style="padding-right: 0px;">
+                                <input type="date" id="keywordName" class="form-control float-right">
+                            </div>
+                            <div class="col-sm-12 col-lg-2" style="padding-left: 10px;">
+                                <button id="search" class="btn btn-primary w-100 float-right" >검색</button>
+                            </div>
+                        </div>
+                        <div class="card h-auto" style="margin-bottom: 20px;">
                             <div class="card-body ts-item__body" style="padding-left: 0px;padding-right: 0px;">
-                                    <div class="container">
-                                        <div id="statusTable" class="ts-compare-items-table" style="overflow:auto; width: 500px; height:300px">
-                                        </div>
+                                <div class="container">
+                                    <div id="statusTable" class="ts-compare-items-table" style="padding-top: 0px;">
                                     </div>
+                                </div>
                             </div>
                         </div>
 
-                        <h3>급이 정보</h3>
+                        <h3 style="margin-bottom: 5px;">급이 정보</h3>
                         <div class="card h-auto">
                             <div class="card-body ts-item__body" style="padding-left: 0px;padding-right: 0px;">
                                 <div class="container">
-                                    <div id="feedingTable" class="ts-compare-items-table" style="overflow:auto; width: 500px; height:175px">
+                                    <div id="feedingTable" class="ts-compare-items-table" style="padding-top: 0px;">
                                     </div>
                                 </div>
                             </div>
@@ -130,6 +126,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+    document.getElementById("keywordName").value = new Date().toISOString().substring(0, 10);
+
     $(document).ready(function (){
         drawStatusTable();
         drawFeedingTable();
@@ -155,7 +153,7 @@
             success:function (result) {
                 console.log(result)
                 var script = "";
-                script += '    <table class="table">';
+                script += '    <table class="table" style="margin-bottom: 0px;">';
                 script += '        <thead  class="text-center">';
                 script += '            <tr>';
                 script += '                <th>번호</th>';
@@ -165,19 +163,23 @@
                 script += '                <th>측정 시간</th>';
                 script += '            </tr>';
                 script += '        </thead>';
-                script += '        <tbody>';
+                script += '    </table>';
+                script += '    <div style="overflow:auto; width: 500px; height:300px">';
+                script += '        <table  class="table">';
+                script += '            <tbody>';
 
                 for (var i = 0; i < result.length; i++) {
                     script += '<tr>'
-                    script += '    <td class=\"text-center\">' + result[i].no + '</td>';
+                    script += '    <td class=\"text-center\">' + (i+1) + '</td>';
                     script += '    <td class=\"text-right\">' + result[i].temperature + '℃</td>';
-                    script += '    <td class=\"text-right\">' + result[i].ph + 'pH</td>';
-                    script += '    <td class=\"text-right\">' + result[i].oxygen + 'mg/L</td>';
-                    script += '    <td class=\"text-center\">' + result[i].measureTime + '</td>';
+                    script += '    <td class=\"text-center\">' + result[i].ph + 'pH</td>';
+                    script += '    <td class=\"text-center\">' + result[i].oxygen + 'mg/L</td>';
+                    script += '    <td class=\"text-right\">' + result[i].measureTime + '</td>';
                     script += '</tr>';
                 }
-                script += '    </tbody>';
-                script += '</table>';
+                script += '        </tbody>';
+                script += '    </table>';
+                script += '</div>';
                 $("#statusTable").html(script);
             }
         });
@@ -196,7 +198,7 @@
             success:function (result) {
                 console.log(result)
                 var script = "";
-                script += '    <table class="table">';
+                script += '    <table class="table" style="margin-bottom: 0px;">';
                 script += '        <thead  class="text-center">';
                 script += '            <tr>';
                 script += '                <th>번호</th>';
@@ -204,17 +206,21 @@
                 script += '                <th>급이 시간</th>';
                 script += '            </tr>';
                 script += '        </thead>';
-                script += '        <tbody>';
+                script += '    </table>';
+                script += '    <div style="overflow:auto; width: 500px; height:100px">';
+                script += '        <table class="table">';
+                script += '            <tbody>';
 
                 for (var i = 0; i < result.length; i++) {
                     script += '<tr>'
-                    script += '    <td class=\"text-center\">' + result[i].no + '</td>';
-                    script += '    <td class=\"text-right\">' + result[i].feedingAmount + 'g</td>';
-                    script += '    <td class=\"text-center\">' + result[i].feedingTime + '</td>';
+                    script += '    <td class=\"text-center\" style="width: 124px;">' + (i+1) + '</td>';
+                    script += '    <td class=\"text-center\" >' + result[i].feedingAmount + 'g</td>';
+                    script += '    <td class=\"text-center\" style="width: 154px;">' + result[i].feedingTime + '</td>';
                     script += '</tr>';
                 }
-                script += '    </tbody>';
-                script += '</table>';
+                script += '        </tbody>';
+                script += '    </table>';
+                script += '</div>';
                 $("#feedingTable").html(script);
             }
         });

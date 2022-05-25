@@ -18,7 +18,7 @@
              , TEMPERATURE
              , PH
              , OXYGEN
-             , MEASURE_TIME
+             , substring(MEASURE_TIME, 12, 5) AS MEASURE_TIME
         FROM WATER_TANK_STATUS
         <where>
             WATER_TANK_ID = #{watertankId}

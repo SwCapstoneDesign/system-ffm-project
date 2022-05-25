@@ -46,7 +46,7 @@
                                                         <button type="button" class="card ts-item ts-card ts-result border text-primary" style="font-size: 1.5em" data-toggle="modal" data-target="#activeCenter">${farmedFish.active}</button>
                                                     </c:if>
                                                     <c:if test="${existence}">
-                                                        <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 불가능">
+                                                        <h3 class="p-2" style="margin: auto" data-toggle="tooltip" data-placement="right" title="상태 변경 불가능 : 사용중인 양식어 정보">
                                                         <button type="button" class="card ts-item ts-card ts-result border" style="font-size: 1.5em" >${farmedFish.active}</button>
                                                     </c:if>
                                                 </c:when>

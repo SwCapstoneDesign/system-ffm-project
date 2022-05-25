@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 <head>
@@ -34,7 +35,7 @@
                                 <section id="basic-information" class="mb-0 pl-3">
                                     <div class="row">
                                         <div class="ts-title mb-2 col-sm-10">
-                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">양식어 명</label>
+                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500;padding-left: 0px;">양식어 명</label>
                                             <h3 style="font-size: 1.8em" class="mb-1 border-bottom">${farmedFish.name}</h3>
                                         </div>
                                         <div class="d-flex align-items-start flex-column" style="text-align: center">
@@ -89,28 +90,33 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">일련번호</label>
+                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500;padding-left: 0px;">일련번호</label>
                                             <p style="font-size: 1.5em">${farmedFish.no}</p>
                                         </div>
                                         <div class="col-sm-4">
-                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">급이 시간</label>
-                                            <p style="font-size: 1.5em">${farmedFish.feedingTime}</p>
+                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500;padding-left: 0px;">급이 시간</label>
+                                            <c:set var="feedingTimes" value="${fn:split(farmedFish.feedingTime, ',')}"/>
+                                            <c:forEach var="feedingTime" items="${feedingTimes}">
+                                                <c:set var="hour" value="${fn:substring(feedingTime, 0, 2)}"/>
+                                                <c:set var="min" value="${fn:substring(feedingTime, 2, 4)}"/>
+                                                <p style="font-size: 1.5em">${hour}:${min}</p>
+                                            </c:forEach>
                                         </div>
                                         <div class="col-sm-4">
-                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">급이 량</label>
-                                            <p style="font-size: 1.5em">${farmedFish.feedingAmount}g</p>
+                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500;padding-left: 0px;">급이 량</label>
+                                            <p style="font-size: 1.5em">${farmedFish.feedingAmount} g</p>
                                         </div>
                                         <div class="col-sm-4">
-                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">수온</label>
-                                            <p style="font-size: 1.5em">${farmedFish.temperature}</p>
+                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500;padding-left: 0px;">수온</label>
+                                            <p style="font-size: 1.5em">${farmedFish.temperature} ℃</p>
                                         </div>
                                         <div class="col-sm-4">
-                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">산도</label>
-                                            <p style="font-size: 1.5em">${farmedFish.ph}</p>
+                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500;padding-left: 0px;">산도</label>
+                                            <p style="font-size: 1.5em">${farmedFish.ph} pH</p>
                                         </div>
                                         <div class="col-sm-4">
-                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500">용존 산소량</label>
-                                            <p style="font-size: 1.5em">${farmedFish.oxygen}</p>
+                                            <label class="badge badge-light" style="font-size: 1.3em; font-weight: 500;padding-left: 0px;">용존 산소량</label>
+                                            <p style="font-size: 1.5em">${farmedFish.oxygen} mg/L</p>
                                         </div>
                                     </div>
                                 </section>

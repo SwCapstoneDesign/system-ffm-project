@@ -63,25 +63,25 @@
                     script += '        <a href="${pageContext.servletContext.contextPath}/watertank/' + result[i].id + '">'
                     script += '            <div class="card-body bg-primary text-white ts-border-radius__lg">'
                     script += '                <div class="ts-description-lists text-center">'
-                    script += '                    수조 ID :' + result[i].id + '<br>'
-                    script += '                    양식어 명 :' + result[i].farmedFishName + '<br>'
+                    script += '                    수조 ID : ' + result[i].id + '<br>'
+                    script += '                    양식어 명 : ' + result[i].farmedFishName + '<br>'
 
                     if(result[i].statusList.length < 1) {
                         script += '                    수온 : null <br>'
                     } else {
-                        script += '                    수온 :' + result[i].statusList[result[i].statusList.length - 1].temperature + '<br>'
+                        script += '                    수온 : ' + result[i].statusList[result[i].statusList.length - 1].temperature + ' ℃<br>'
                     }
 
                     if(result[i].statusList.length < 1) {
                         script += '                    산도 : null <br>'
                     } else {
-                        script += '                    산도 :' + result[i].statusList[result[i].statusList.length - 1].ph + '<br>'
+                        script += '                    산도 : ' + result[i].statusList[result[i].statusList.length - 1].ph + ' pH<br>'
                     }
 
                     if(result[i].statusList.length < 1) {
                         script += '                    용존산소량 : null'
                     } else {
-                        script += '                    용존산소량 :' + result[i].statusList[result[i].statusList.length - 1].oxygen
+                        script += '                    용존산소량 : ' + result[i].statusList[result[i].statusList.length - 1].oxygen + ' mg/L'
                     }
 
                     script += '                </div>'

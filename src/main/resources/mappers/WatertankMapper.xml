@@ -15,6 +15,7 @@
              , ACTIVE
         FROM WATER_TANK
         <where>
+            AND ACTIVE = 'Y'
             <if test="farmedFishName != null and farmedFishName !=''">
                 AND FARMED_FISH_NAME = #{farmedFishName}
             </if>

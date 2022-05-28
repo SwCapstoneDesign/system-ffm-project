@@ -46,9 +46,10 @@ public class WatertankController {
 
     @PutMapping
     public ModelAndView editWatertank(Watertank watertank) {
+        watertank.setActive("N");
         watertankService.editWatertank(watertank);
 
-        return new ModelAndView(new RedirectView("/wartertank/" + watertank.getId()));
+        return new ModelAndView(new RedirectView("/watertank/" + watertank.getId()));
     }
 
     @PostMapping(value = "/info", consumes = MediaType.APPLICATION_JSON_VALUE)

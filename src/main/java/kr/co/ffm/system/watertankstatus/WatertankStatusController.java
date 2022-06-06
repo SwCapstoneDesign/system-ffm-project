@@ -5,10 +5,7 @@ import com.google.gson.JsonObject;
 import kr.co.ffm.system.watertank.Watertank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,8 +22,8 @@ public class WatertankStatusController {
         return statusList;
     }
 
-    @PostMapping
-    public String receiveWatertankStatus(WatertankStatus watertankStatus) {
+    @PostMapping(consumes =  MediaType.APPLICATION_JSON_VALUE)
+    public String receiveWatertankStatus(@RequestBody WatertankStatus watertankStatus) {
         watertankStatusService.receiveWatertankStatus(watertankStatus);
 
         Gson response = new Gson();

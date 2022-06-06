@@ -1,6 +1,7 @@
 package kr.co.ffm.system.control;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import kr.co.ffm.system.watertank.Watertank;
 import kr.co.ffm.system.watertank.WatertankMapper;
 import okhttp3.*;
@@ -29,13 +30,21 @@ public class ControlServiceImpl implements ControlService {
     @Override
     public String sendControl(Watertank watertank, Control control) {
         Watertank controlWatertank = watertankMapper.selectById(watertank);
+
         Gson gson = new Gson();
 
-        String url = "http://" + controlWatertank.getAgentIpAddress() + "/agent";
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("control", control.getControl());
+        jsonObject.addProperty("action", control.getAction());
+        jsonObject.addProperty("target", control.getTarget());
+        jsonObject.addProperty("value", control.getValue());
+
+        // String url = "http://" + controlWatertank.getAgentIpAddress() + "/agent";
+        String url = "http://172.16.28.34/agent";
         String responseCode = null;
 
         try {
-            RequestBody body = RequestBody.create(gson.toJson(control), JSON);
+            RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), gson.toJson(jsonObject));
 
             OkHttpClient client = new OkHttpClient()
                     .newBuilder()

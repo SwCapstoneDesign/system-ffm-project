@@ -25,7 +25,7 @@
             parameterType="FarmedFish"
             resultType="FarmedFish">
         SELECT NO
-            , NAME
+             , NAME
              , TEMPERATURE
              , PH
              , OXYGEN
@@ -40,7 +40,9 @@
     <select id="selectByNo"
             parameterType="FarmedFish"
             resultType="FarmedFish">
-        SELECT *
+        SELECT TEMPERATURE
+             , PH
+             , OXYGEN
         FROM FARMED_FISH
         WHERE NO = #{no}
     </select>

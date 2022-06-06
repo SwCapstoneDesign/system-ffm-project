@@ -9,4 +9,5 @@ import java.util.List;
 public interface FeedingService {
     public List<Feeding> viewFeedingList(Watertank watertank);
     public void receiveFeeding(Feeding feeding);
+    public String sendFeeding(Watertank watertank);
 }

@@ -29,6 +29,7 @@
              , TEMPERATURE
              , PH
              , OXYGEN
+             , FEEDING_TIME
         FROM FARMED_FISH
         <where>
             <if test="name != null and name != ''">
@@ -40,9 +41,12 @@
     <select id="selectByNo"
             parameterType="FarmedFish"
             resultType="FarmedFish">
-        SELECT TEMPERATURE
+        SELECT NO
+             , NAME
+             , TEMPERATURE
              , PH
              , OXYGEN
+             , FEEDING_TIME
         FROM FARMED_FISH
         WHERE NO = #{no}
     </select>

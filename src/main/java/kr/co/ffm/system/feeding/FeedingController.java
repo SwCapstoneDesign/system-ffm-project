@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import kr.co.ffm.system.farmedfish.FarmedFish;
 import kr.co.ffm.system.watertank.Watertank;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/feeding")
+@Log4j2
 public class FeedingController {
     @Autowired
     private FeedingService feedingService;
@@ -35,5 +37,11 @@ public class FeedingController {
         jsonObject.addProperty("message", "null");
 
         return gson.toJson(jsonObject);
+    }
+
+    @GetMapping
+    public void manualFeeding() {
+        String result = feedingService.sendFeeding(new Watertank());
+        log.info(result);
     }
 }

@@ -1,5 +1,6 @@
 package kr.co.ffm.system.config;
 
+import kr.co.ffm.system.feeding.FeedingScheduler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.HiddenHttpMethodFilter;

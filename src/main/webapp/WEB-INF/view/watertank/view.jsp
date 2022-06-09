@@ -201,7 +201,6 @@
                 script += '        <thead  class="text-center">';
                 script += '            <tr>';
                 script += '                <th>번호</th>';
-                script += '                <th>급여 량</th>';
                 script += '                <th>급이 시간</th>';
                 script += '            </tr>';
                 script += '        </thead>';
@@ -213,7 +212,6 @@
                 for (var i = 0; i < result.length; i++) {
                     script += '<tr>'
                     script += '    <td class=\"text-center\" style="width: 124px;">' + (i+1) + '</td>';
-                    script += '    <td class=\"text-center\" >' + result[i].feedingAmount + 'g</td>';
                     script += '    <td class=\"text-center\" style="width: 154px;">' + result[i].feedingTime + '</td>';
                     script += '</tr>';
                 }

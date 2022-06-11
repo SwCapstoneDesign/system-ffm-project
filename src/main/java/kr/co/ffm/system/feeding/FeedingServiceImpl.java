@@ -25,7 +25,7 @@ public class FeedingServiceImpl implements FeedingService {
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
 
-    private Logger logger = LogManager.getLogger(ControlServiceImpl.class);
+    private Logger logger = LogManager.getLogger(FeedingServiceImpl.class);
 
     @Override
     public List<Feeding> viewFeedingList(Watertank watertank) {
@@ -78,6 +78,11 @@ public class FeedingServiceImpl implements FeedingService {
                 logger.info("----------INFO----------");
                 logger.info("| Send Control is Success |");
                 logger.info("-------------------------");
+
+                Feeding feeding = new Feeding();
+                feeding.setWatertankId(watertank.getId());
+                feeding.setFeedingAmount(50);
+                feedingMapper.insert(feeding);
             } else {
                 logger.error("**********ERROR**********");
                 logger.error("* " + responseCode.split(":")[2].split("\"")[1] + " *");

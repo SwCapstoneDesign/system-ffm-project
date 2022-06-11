@@ -41,7 +41,9 @@ public class FeedingController {
 
     @GetMapping
     public void manualFeeding() {
-        String result = feedingService.sendFeeding(new Watertank());
+        Watertank watertank = new Watertank();
+        watertank.setId("WT02");
+        String result = feedingService.sendFeeding(watertank);
         log.info(result);
     }
 }
